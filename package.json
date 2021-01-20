@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fontsource/inter": "4.1.0",
+    "@glenstack/cf-workers-graphql": "1.0.4",
+    "@graphql-tools/schema": "6.0.18",
     "@headlessui/react": "0.2.0",
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.3",
@@ -13,6 +15,7 @@
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "classnames": "2.2.6",
+    "graphql-tag": "2.11.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "5.2.0",
