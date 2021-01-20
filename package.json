@@ -55,6 +55,8 @@
     "@fab/plugin-render-html": "1.0.0-rc.9",
     "@fab/plugin-rewire-assets": "1.0.0-rc.9",
     "@fab/server": "1.0.0-rc.9",
+    "@tailwindcss/forms": "0.2.1",
+    "@tailwindcss/line-clamp": "0.1.0",
     "@tailwindcss/postcss7-compat": "2.0.2",
     "@types/classnames": "2.2.11",
     "@types/react-router-dom": "5.1.7",

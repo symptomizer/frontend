@@ -9,7 +9,7 @@ export const Home: FC = () => {
   return (
     <div style={{ minHeight: "712px" }} className="overflow-y-auto">
       <div className="min-h-screen bg-gray-100">
-        <header className="pb-24 bg-indigo-600">
+        <header className="pb-24 bg-gradient-to-r from-light-blue-800 to-cyan-600">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <div className="relative py-5 flex items-center justify-center lg:justify-between">
               {/* Logo */}
@@ -18,7 +18,7 @@ export const Home: FC = () => {
                   <span className="sr-only">Workflow</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg"
+                    src="https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg"
                     alt="Workflow"
                   />
                 </a>
@@ -28,7 +28,7 @@ export const Home: FC = () => {
               <div className="hidden lg:ml-4 lg:flex lg:items-center lg:pr-0.5">
                 <button
                   type="button"
-                  className="flex-shrink-0 p-1 text-indigo-200 rounded-full hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="flex-shrink-0 p-1 text-cyan-200 rounded-full hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white"
                 >
                   <span className="sr-only">View notifications</span>
                   <svg
@@ -161,7 +161,7 @@ export const Home: FC = () => {
                 {/* Mobile menu button */}
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-indigo-200 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-cyan-200 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white"
                   aria-expanded={isOpen}
                 >
                   <span className="sr-only">Open main menu</span>
@@ -218,7 +218,7 @@ export const Home: FC = () => {
 
                     <a
                       href="/"
-                      className="text-indigo-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
+                      className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Profile
@@ -226,7 +226,7 @@ export const Home: FC = () => {
 
                     <a
                       href="/"
-                      className="text-indigo-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
+                      className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Resources
@@ -234,7 +234,7 @@ export const Home: FC = () => {
 
                     <a
                       href="/"
-                      className="text-indigo-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
+                      className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Company Directory
@@ -242,7 +242,7 @@ export const Home: FC = () => {
 
                     <a
                       href="/"
-                      className="text-indigo-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
+                      className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Openings
@@ -312,7 +312,7 @@ export const Home: FC = () => {
                   <div>
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                      src="https://tailwindui.com/img/logos/workflow-mark-cyan-600.svg"
                       alt="Workflow"
                     />
                   </div>
@@ -320,7 +320,7 @@ export const Home: FC = () => {
                     <button
                       onClick={() => setIsOpen(false)}
                       type="button"
-                      className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                      className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500"
                     >
                       <span className="sr-only">Close menu</span>
                       <svg
@@ -391,7 +391,7 @@ export const Home: FC = () => {
                       rebecca.nicholas@example.com
                     </div>
                   </div>
-                  <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
                     <span className="sr-only">View notifications</span>
                     <svg
                       className="h-6 w-6"
