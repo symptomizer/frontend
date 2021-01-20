@@ -19,6 +19,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:fab": "npm run build && npm run fab:build",
+    "fab:build": "fab build",
+    "fab:serve": "fab serve fab.zip",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +42,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fab/actions": "^1.0.0-rc.9",
+    "@fab/cli": "^1.0.0-rc.9",
+    "@fab/input-static": "^1.0.0-rc.9",
+    "@fab/plugin-render-html": "^1.0.0-rc.9",
+    "@fab/plugin-rewire-assets": "^1.0.0-rc.9",
+    "@fab/server": "^1.0.0-rc.9"
   }
 }
