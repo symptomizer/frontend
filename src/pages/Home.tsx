@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 export const Home: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -207,13 +208,13 @@ export const Home: FC = () => {
               <div className="grid grid-cols-3 gap-8 items-center">
                 <div className="col-span-2">
                   <nav className="flex space-x-4">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="text-white text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="page"
                     >
                       Home
-                    </a>
+                    </Link>
 
                     <a
                       href="/"
@@ -341,12 +342,12 @@ export const Home: FC = () => {
                   </div>
                 </div>
                 <div className="mt-3 px-2 space-y-1">
-                  <a
-                    href="/"
+                  <Link
+                    to="/"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Home
-                  </a>
+                  </Link>
                   <a
                     href="/"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
