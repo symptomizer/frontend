@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fontsource/inter": "4.1.0",
+    "@headlessui/react": "0.2.0",
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.3",
     "@testing-library/user-event": "12.6.0",
@@ -11,6 +12,7 @@
     "@types/node": "14.14.22",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "classnames": "2.2.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-scripts": "4.0.1",
@@ -53,6 +55,7 @@
     "@fab/plugin-rewire-assets": "1.0.0-rc.9",
     "@fab/server": "1.0.0-rc.9",
     "@tailwindcss/postcss7-compat": "2.0.2",
+    "@types/classnames": "2.2.11",
     "autoprefixer": "9.8.6",
     "postcss": "7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.2"
