@@ -1,10 +1,35 @@
+import gql from "graphql-tag";
 import { FC, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { Search } from "./__generated__/Search";
+import { SearchResults } from "../components/SearchResults";
+
+const SEARCH = gql`
+  query Search($term: String!) {
+    search(query: $term) {
+      documents {
+        edges {
+          node {
+            name
+            description
+            url
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const Home: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const searchResults = useQuery<Search>(SEARCH, {
+    variables: { term: searchTerm },
+  });
 
   return (
     <div style={{ minHeight: "712px" }} className="overflow-y-auto">
@@ -126,7 +151,7 @@ export const Home: FC = () => {
               {/* Search */}
               <div className="flex-1 min-w-0 px-12 lg:hidden">
                 <div className="max-w-xs w-full mx-auto">
-                  <label htmlFor="search" className="sr-only">
+                  <label htmlFor="mobile-search" className="sr-only">
                     Search
                   </label>
                   <div className="relative text-white focus-within:text-gray-600">
@@ -146,11 +171,13 @@ export const Home: FC = () => {
                       </svg>
                     </div>
                     <input
-                      id="search"
-                      className="block w-full bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
+                      id="mobile-search"
+                      className="block w-full bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 focus:text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
                       placeholder="Search"
                       type="search"
                       name="search"
+                      value={searchTerm}
+                      onChange={event => setSearchTerm(event.target.value)}
                     />
                   </div>
                 </div>
@@ -272,10 +299,12 @@ export const Home: FC = () => {
                       </div>
                       <input
                         id="search"
-                        className="block w-full bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
+                        className="block w-full bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 focus:text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
                         placeholder="Search"
                         type="search"
                         name="search"
+                        value={searchTerm}
+                        onChange={event => setSearchTerm(event.target.value)}
                       />
                     </div>
                   </div>
@@ -440,29 +469,28 @@ export const Home: FC = () => {
             {/* Main 3 column grid */}
             <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
               {/* Left column */}
-              <div className="grid grid-cols-1 gap-4 lg:col-span-2">
+              {/* <div className="grid grid-cols-1 gap-4 lg:col-span-2">
                 <section aria-labelledby="section-1-title">
                   <h2 className="sr-only" id="section-1-title">
                     Section title
                   </h2>
                   <div className="rounded-lg bg-white overflow-hidden shadow">
                     <div className="p-6">
-                      {/* <x-placeholder>
-                        <div className="h-96 border-4 border-dashed border-gray-200 rounded-lg"></div>
-                      </x-placeholder> */}
+                      <div className="h-96 border-4 border-dashed border-gray-200 rounded-lg"></div>
                     </div>
                   </div>
                 </section>
-              </div>
+              </div> */}
 
               {/* Right column */}
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 lg:col-span-3 gap-4">
                 <section aria-labelledby="section-2-title">
                   <h2 className="sr-only" id="section-2-title">
                     Section title
                   </h2>
                   <div className="rounded-lg bg-white overflow-hidden shadow">
-                    <div className="p-6">
+                    <div className="px-6 py-2">
+                      <SearchResults {...searchResults} />
                       {/* <x-placeholder>
                         <div className="h-96 border-4 border-dashed border-gray-200 rounded-lg"></div>
                       </x-placeholder> */}
