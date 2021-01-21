@@ -31,11 +31,20 @@
     "start": "craco start",
     "build": "craco build",
     "build:fab": "npm run build && npm run fab:build",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
+    "check-types": "tsc",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|ts|tsx|json|json5|md|css)\"",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "concurrently \"npm:check-types\" \"npm:check-format\" \"npm:lint\" \"npm:build\"",
     "fab:build": "fab build",
     "fab:serve": "fab serve fab.zip",
+    "pretest": "npm run validate",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "graphql:update-schema": "apollo client:download-schema --endpoint='http://localhost:3000/graphql' ./schema.graphql"
+    "graphql:update-schema": "apollo client:download-schema --endpoint='http://localhost:3000/graphql' ./schema.graphql",
+    "graphql:update-types": "apollo client:codegen --target=typescript --localSchemaFile='./schema.graphql' --includes='./src/**/*'",
+    "graphql:watch-types": "npm run graphql:update-types -- --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -72,7 +81,24 @@
     "@types/react-router-dom": "5.1.7",
     "apollo": "2.32.1",
     "autoprefixer": "9.8.6",
+    "concurrently": "5.3.0",
+    "husky": "4.3.8",
+    "lint-staged": "10.5.3",
     "postcss": "7.0.35",
+    "prettier": "1.19.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check-types && lint-staged"
+    }
+  },
+  "lint-staged": {
+    ".+(js|jsx|ts|tsx)": [
+      "eslint"
+    ],
+    "**/*.+(js|jsx|ts|tsx|json|json5|md|css)": [
+      "prettier --write"
+    ]
   }
 }

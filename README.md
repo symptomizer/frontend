@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Symptomizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> The frontend of Symptomizer
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- [Node.js](https://nodejs.org/en/)
 
-### `npm start`
+  v15.6.0 is confirmed to work.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. `git clone git@github.com:symptomizer/frontend.git`
+1. `cd frontend`
+1. `npm i`
+1. `npm run build`
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is primarily a [Create React App](https://create-react-app.dev/). It uses [TypeScript](https://www.typescriptlang.org/) to aid the developer experience.
 
-### `npm run build`
+### React App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you only need to run the React app, you can just run `npm run start`. It auto hot-reloads so is great for developing the UI.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## FAB
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is enhanced as a [FAB](https://fab.dev/), which allows us to sprinkle in some server-side functionality. These plugins can be found in the `./api` folder. Right now, there's just a mock GraphQL server, but in the future, we could use this for user authorization etc.
 
-### `npm run eject`
+## Testing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Pretty minimal at this point, but CRA comes with Jest testing built-in, so there's one example in `./src/App.test.tsx`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Static Testing & Linting
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[ESLint](https://eslint.org/) comes pre-setup with CRA, and [Prettier](https://prettier.io/) is setup with [`lint-staged`](https://github.com/okonet/lint-staged) and [`husky`](https://github.com/typicode/husky) so it be run automatically when you `git commit`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deployment
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Linc](https://linc.sh/) is setup to handle the CI/CD pipeline to build and deploy the FAB on [Cloudflare Workers](https://workers.cloudflare.com/). Preview builds happen for every commit, and anything merged into the default branch is deployed to production (currently that's [https://symptomizer.gregbrimble.workers.dev/](https://symptomizer.gregbrimble.workers.dev/), but we'll obviously get setup with a custom domain at some point).

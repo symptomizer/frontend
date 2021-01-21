@@ -4,11 +4,14 @@ import { typeDefs as scalarTypeDefs } from "./types/scalars";
 import { typeDefs as relayTypeDefs } from "./types/relay";
 import { typeDefs as externalSourceTypeDefs } from "./types/externalSource";
 import { typeDefs as documentTypeDefs } from "./types/document";
-import { typeDefs as searchResultTypeDefs } from "./types/searchResult";
+import {
+  typeDefs as searchResultTypeDefs,
+  resolvers as searchResultResolvers,
+} from "./types/searchResult";
 
 const typeDefs = gql`
   type Query {
-    hello: String
+    hello: String!
   }
 `;
 
@@ -27,5 +30,5 @@ export const schema = makeExecutableSchema({
     documentTypeDefs,
     searchResultTypeDefs,
   ],
-  resolvers: [resolvers],
+  resolvers: [resolvers, searchResultResolvers],
 });

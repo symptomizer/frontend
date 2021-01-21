@@ -5,9 +5,7 @@
       dir: "build",
     },
     "@fab/plugin-precompile": {
-      "./api/graphql/index.ts": {
-        _config: "./plugin-overrides.js",
-      },
+      "./api/graphql/index.ts": {},
     },
     "@fab/plugin-render-html": {
       fallback: "/index.html",
@@ -31,11 +29,5 @@
     // However, we recommend automatic deploys (triggered by git push)
     // using a service such as Linc (https://linc.sh)
     // • See https://fab.dev/kb/automatic-deploys for setup instructions.
-    "cf-workers": {
-      account_id: "@CF_WORKERS_ACCOUNT_ID",
-      api_token: "@CF_WORKERS_API_TOKEN",
-      workers_dev: true,
-      script_name: "symptomizer",
-    },
   },
 }
