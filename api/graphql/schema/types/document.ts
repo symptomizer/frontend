@@ -9,6 +9,7 @@ export const typeDefs = gql`
   type Document implements Node {
     id: ID!
     name: String!
+    description: String
     url: URL!
     externalSource: ExternalSource!
   }
