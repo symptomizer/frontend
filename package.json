@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "3.3.7",
     "@fontsource/inter": "4.1.0",
     "@glenstack/cf-workers-graphql": "1.0.4",
     "@graphql-tools/schema": "6.0.18",
@@ -33,7 +34,8 @@
     "fab:build": "fab build",
     "fab:serve": "fab serve fab.zip",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "graphql:update-schema": "apollo client:download-schema --endpoint='http://localhost:3000/graphql' ./schema.graphql"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +61,7 @@
     "@fab/cli": "1.0.0-rc.9",
     "@fab/deployer-cf-workers": "^1.0.0-rc.9",
     "@fab/input-static": "1.0.0-rc.9",
-    "@fab/plugin-precompile": "1.0.0-rc.9",
+    "@fab/plugin-precompile": "1.0.0-rc.9.p1",
     "@fab/plugin-render-html": "1.0.0-rc.9",
     "@fab/plugin-rewire-assets": "1.0.0-rc.9",
     "@fab/server": "1.0.0-rc.9",
@@ -68,6 +70,7 @@
     "@tailwindcss/postcss7-compat": "2.0.2",
     "@types/classnames": "2.2.11",
     "@types/react-router-dom": "5.1.7",
+    "apollo": "2.32.1",
     "autoprefixer": "9.8.6",
     "postcss": "7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.2"
