@@ -8,7 +8,9 @@ const { connectionType: DocumentConnection } = connectionDefinitions({
 export const typeDefs = gql`
   type Document implements Node {
     id: ID!
+    name: String!
     url: URL!
+    externalSource: ExternalSource!
   }
 
   ${DocumentConnection}
