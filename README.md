@@ -31,6 +31,8 @@ The code can be found in `./src`. It uses [React Router](https://reactrouter.com
 
 This project is enhanced as a [FAB](https://fab.dev/), which allows us to sprinkle in some server-side functionality. These plugins can be found in the `./api` folder. Right now, there's just a mock GraphQL server, but in the future, we could use this for user authorization etc.
 
+To run the full FAB build (which is as close to production as you can get), `npm run build:fab && npx fab serve`
+
 ## Testing
 
 Pretty minimal at this point, but CRA comes with [Jest](https://jestjs.io/) built-in and there's one example in `./src/App.test.tsx`.

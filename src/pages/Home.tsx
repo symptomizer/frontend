@@ -13,9 +13,16 @@ const SEARCH = gql`
       documents {
         edges {
           node {
+            id
             name
             description
             url
+            externalSource {
+              id
+              name
+              description
+              url
+            }
           }
         }
       }
