@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "apollographql.vscode-apollo",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mrmlnc.vscode-json5",
+    "csstools.postcss"
+  ]
+}

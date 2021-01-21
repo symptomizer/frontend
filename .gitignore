@@ -196,4 +196,12 @@ yarn-error.log*
 
 /.fab
 /fab.zip
+
+
+### CUSTOM ###
+
+# Because CRA uses an outdated version of Webpack which causes conflicts
 !/.env
+
+# To share the recommended VSCode extensions
+!.vscode/extensions.json
