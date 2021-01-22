@@ -21,6 +21,10 @@
       // allowing for many production-specific optimisations. See https://fab.dev/kb/production
       // Example setting:
       // API_URL: 'https://api.example.com/graphql'
+      ENV: "production",
+    },
+    staging: {
+      ENV: "staging",
     },
   },
   deploy: {

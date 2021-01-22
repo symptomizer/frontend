@@ -8,6 +8,7 @@ import {
   typeDefs as searchResultTypeDefs,
   resolvers as searchResultResolvers,
 } from "./types/searchResult";
+import { typeDefs as suggestStringTypeDefs } from "./types/suggestString";
 
 const typeDefs = gql`
   type Query {
@@ -29,6 +30,7 @@ export const schema = makeExecutableSchema({
     externalSourceTypeDefs,
     documentTypeDefs,
     searchResultTypeDefs,
+    suggestStringTypeDefs,
   ],
   resolvers: [resolvers, searchResultResolvers],
 });

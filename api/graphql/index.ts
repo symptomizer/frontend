@@ -1,11 +1,14 @@
 import { FABRuntime } from "@fab/core";
 import { makeGraphQLHandler } from "@glenstack/cf-workers-graphql";
+import { makeContextValueMaker } from "./context";
 import { schema } from "./schema/index";
 import { voyager } from "./voyager";
 
-const graphQLHandler = makeGraphQLHandler(schema);
+export default function graphql({ Router, ServerContext }: FABRuntime) {
+  const graphQLHandler = makeGraphQLHandler(schema, {
+    makeContextValue: makeContextValueMaker(ServerContext),
+  });
 
-export default function graphql({ Router }: FABRuntime) {
   Router.on("/graphql", ({ request }) => graphQLHandler(request));
   Router.on(
     "/voyager",
