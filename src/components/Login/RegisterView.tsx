@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { Link } from "react-router-dom";
 
 import { View } from "../../pages/Login";
 
@@ -72,16 +71,17 @@ export const RegisterView: FC<LoginViewProps> = ({ changeView }) => {
         </div>
       </div>
       <div>
-        <Link to="/">
-          <button className="transition w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyans-500 disabled:opacity-50">
-            Sign Up
-          </button>
-        </Link>
+        <button
+          onClick={() => changeView(View.Login)}
+          className="transition w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyans-500 disabled:opacity-50"
+        >
+          Sign Up
+        </button>
       </div>
 
       <div className="text-right">
         <div className="text-sm">
-          <a
+          <a // eslint-disable-line
             onClick={() => changeView(View.Login)}
             className="font-medium text-cyan-600 hover:text-cyan-500 cursor-pointer"
           >

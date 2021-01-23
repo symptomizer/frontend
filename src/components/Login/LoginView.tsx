@@ -71,7 +71,7 @@ export const LoginView: FC<LoginViewProps> = ({ changeView }) => {
         </div>
 
         <div className="text-sm">
-          <a
+          <a // eslint-disable-line
             onClick={() => changeView(View.ForgotPassword)}
             className="font-medium text-cyan-600 hover:text-cyan-500 cursor-pointer"
           >

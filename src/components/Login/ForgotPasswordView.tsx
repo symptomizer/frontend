@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { View } from "../../pages/Login";
 import { Transition } from "@headlessui/react";
 
@@ -45,7 +45,7 @@ export const ForgotPasswordView: FC<LoginViewProps> = ({
 
       <div className="text-right">
         <div className="text-sm">
-          <a
+          <a // eslint-disable-line
             onClick={() => changeView(View.Login)}
             className="font-medium text-cyan-600 hover:text-cyan-500 cursor-pointer"
           >

@@ -1,12 +1,4 @@
-import gql from "graphql-tag";
 import { FC, useState } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { Search } from "./__generated__/Search";
-import { SearchResults } from "../components/SearchResults";
-import { CSSTransition } from "react-transition-group";
 import AnimateHeight from "react-animate-height";
 
 import { LoginView } from "../components/Login/LoginView";
@@ -25,7 +17,6 @@ export enum View {
 export const Login: FC = () => {
   const [currentView, setCurrentView] = useState<View>(View.Login);
   const [notificationShowing, setNotificationShowing] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div>
@@ -50,10 +41,9 @@ export const Login: FC = () => {
           {currentView === View.Login && (
             <p className="mt-2 text-center text-sm text-gray-600 max-w">
               Or&nbsp;
-              <a
+              <a // eslint-disable-line
                 onClick={() => setCurrentView(View.Register)}
-                href="#"
-                className="transition font-medium text-cyan-600 hover:text-cyan-500"
+                className="cursor-pointer transition font-medium text-cyan-600 hover:text-cyan-500"
               >
                 register here...
               </a>
