@@ -136,16 +136,18 @@ export const Home: FC = () => {
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="/"
-                                className={classNames(
-                                  "block px-4 py-2 text-sm text-gray-700",
-                                  { "bg-gray-100": active }
-                                )}
-                                role="menuitem"
-                              >
-                                Sign out
-                              </a>
+                              <Link to="/login">
+                                <a
+                                  href="/"
+                                  className={classNames(
+                                    "block px-4 py-2 text-sm text-gray-700",
+                                    { "bg-gray-100": active }
+                                  )}
+                                  role="menuitem"
+                                >
+                                  Sign out
+                                </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         </Menu.Items>
