@@ -40,7 +40,7 @@ export const SearchResults = ({
   return (
     <ul className="divide-y divide-gray-200">
       {documentEdges.map(
-        edge => edge?.node && <SearchResult node={edge.node} />
+        (edge) => edge?.node && <SearchResult node={edge.node} />
       )}
     </ul>
   );
