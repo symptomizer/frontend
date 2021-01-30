@@ -9,15 +9,23 @@ import {
   resolvers as searchResultResolvers,
 } from "./types/searchResult";
 import { typeDefs as suggestStringTypeDefs } from "./types/suggestString";
+import { typeDefs as userTypeDefs } from "./types/user";
 
 const typeDefs = gql`
   type Query {
+    hello: String!
+  }
+
+  type Mutation {
     hello: String!
   }
 `;
 
 const resolvers = {
   Query: {
+    hello: () => "Hello, world!",
+  },
+  Mutation: {
     hello: () => "Hello, world!",
   },
 };
@@ -31,6 +39,7 @@ export const schema = makeExecutableSchema({
     documentTypeDefs,
     searchResultTypeDefs,
     suggestStringTypeDefs,
+    userTypeDefs,
   ],
   resolvers: [resolvers, searchResultResolvers],
 });
