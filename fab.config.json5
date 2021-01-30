@@ -6,6 +6,9 @@
     },
     "@fab/plugin-precompile": {
       "./api/graphql/index.ts": {},
+      "./api/auth/index.ts": {
+        _config: "./plugin-overrides.js",
+      },
     },
     "@fab/plugin-render-html": {
       fallback: "/index.html",

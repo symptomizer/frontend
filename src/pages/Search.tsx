@@ -30,7 +30,7 @@ const SEARCH = gql`
   }
 `;
 
-export const Home: FC = () => {
+export const SearchPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -186,7 +186,7 @@ export const Home: FC = () => {
                       type="search"
                       name="search"
                       value={searchTerm}
-                      onChange={event => setSearchTerm(event.target.value)}
+                      onChange={(event) => setSearchTerm(event.target.value)}
                     />
                   </div>
                 </div>
@@ -313,7 +313,7 @@ export const Home: FC = () => {
                         type="search"
                         name="search"
                         value={searchTerm}
-                        onChange={event => setSearchTerm(event.target.value)}
+                        onChange={(event) => setSearchTerm(event.target.value)}
                       />
                     </div>
                   </div>
