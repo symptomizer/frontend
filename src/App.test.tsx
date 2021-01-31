@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders without crashing", () => {
   render(<App />);
-  const symptomizer = screen.getByText(/Symptomizer/i);
-  expect(symptomizer).toBeInTheDocument();
+  const symptomizer = screen.getAllByText(/Symptomizer/i);
+  expect(symptomizer.length).toBeGreaterThanOrEqual(1);
 });
