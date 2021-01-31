@@ -14,6 +14,8 @@ module.exports = {
         brands: {
           "nhs-blue": "#005EB8",
           "nice-black": "#222222",
+          "who-blue": "#0093d5",
+          "bnf-black": "#111820",
         },
       },
       fontFamily: {
