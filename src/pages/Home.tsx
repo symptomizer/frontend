@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { NHS } from "../components/logos/NHS";
 import { NICE } from "../components/logos/NICE";
 import GregBrimble from "../assets/profilePictures/GregBrimble.jpg";
 import RagnorComerford from "../assets/profilePictures/RagnorComerford.jpg";
@@ -7,7 +7,7 @@ import MohammadJavad from "../assets/profilePictures/MohammadJavad.jpg";
 import BenedictyMambi from "../assets/profilePictures/BenedictyMambi.jpg";
 import LianaMostafa from "../assets/profilePictures/LianaMostafa.jpg";
 import BarnabasUjvari from "../assets/profilePictures/BarnabasUjvari.jpg";
-import { NHS } from "../components/logos/NHS";
+import { Footer } from "../components/Footer";
 
 export const Home: FC = () => (
   <div>
@@ -57,12 +57,12 @@ export const Home: FC = () => (
               </div>
               <div className="mt-12 sm:max-w-lg sm:w-full sm:flex">
                 <div className="mt-4 sm:mt-0 sm:ml-3">
-                  <Link
-                    to="/login"
+                  <a
+                    href="/login"
                     className="block w-full rounded-md border border-transparent px-5 py-3 bg-cyan-600 text-base font-medium text-white shadow hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:px-10"
                   >
                     Get Started
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="mt-6">
@@ -77,11 +77,6 @@ export const Home: FC = () => (
                       </svg>
                     </div>
                     <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-                      {/* <img
-                        className="max-h-12"
-                        src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg"
-                        alt="Mirage"
-                      /> */}
                       <svg className="max-h-12 fill-current text-gray-400">
                         <NICE />
                       </svg>
@@ -271,13 +266,6 @@ export const Home: FC = () => (
       </div>
     </div>
 
-    <footer>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
-        <div className="border-t border-gray-200 py-8 text-sm text-gray-600 text-center sm:text-left">
-          <span className="block sm:inline">© 2021 Symptomizer.</span>{" "}
-          <span className="block sm:inline">All rights reserved.</span>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 );

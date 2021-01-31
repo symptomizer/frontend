@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Search } from "./__generated__/Search";
 import { SearchResults } from "../components/SearchResults";
+import { Footer } from "../components/Footer";
 
 const SEARCH = gql`
   query Search($term: String!) {
@@ -510,14 +511,7 @@ export const SearchPage: FC = () => {
             </div>
           </div>
         </main>
-        <footer>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
-            <div className="border-t border-gray-200 py-8 text-sm text-gray-600 text-center sm:text-left">
-              <span className="block sm:inline">© 2021 Symptomizer.</span>{" "}
-              <span className="block sm:inline">All rights reserved.</span>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
