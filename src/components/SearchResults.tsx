@@ -14,7 +14,7 @@ const SearchResult = ({
       {node.name}
     </a>
     <p className="mt-1 text-sm text-gray-500">{node.description}</p>
-    <p className="text-xs text-gray-500 text-right">
+    <p className="mt-1 text-xs text-gray-500 text-right">
       Sourced from{" "}
       <a
         className="font-medium"
