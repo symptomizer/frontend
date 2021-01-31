@@ -1,7 +1,11 @@
 import { FC } from "react";
 
 export const NICE: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150.633 50">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 150.633 50"
+    className="fill-current"
+  >
     <defs>
       <clipPath id="clipPath18-5">
         <path d="m35.5 780.14h213.98v21.75h-213.98z" clip-rule="evenodd" />

@@ -11,6 +11,10 @@ module.exports = {
         teal: colors.teal,
         cyan: colors.cyan,
         rose: colors.rose,
+        brands: {
+          "nhs-blue": "#005EB8",
+          "nice-black": "#222222",
+        },
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],

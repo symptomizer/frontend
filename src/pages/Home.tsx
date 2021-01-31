@@ -71,13 +71,13 @@ export const Home: FC = () => (
                     Featuring content exclusively from reputable sources
                   </p>
                   <div className="mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8">
-                    <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-                      <svg className="max-h-12 fill-current text-gray-400">
+                    <div className="transition duration-150 ease-in-out col-span-1 flex justify-center py-8 px-8 bg-gray-50 text-gray-400 hover:text-brands-nhs-blue">
+                      <svg className="max-h-12">
                         <NHS />
                       </svg>
                     </div>
-                    <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-                      <svg className="max-h-12 fill-current text-gray-400">
+                    <div className="transition duration-150 ease-in-out col-span-1 flex justify-center py-8 px-8 bg-gray-50 text-gray-400 hover:text-brands-nice-black">
+                      <svg className="max-h-12">
                         <NICE />
                       </svg>
                     </div>

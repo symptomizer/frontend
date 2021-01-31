@@ -1,7 +1,11 @@
 import { FC } from "react";
 
 export const NHS: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370.61 150">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 370.61 150"
+    className="fill-current"
+  >
     <rect width="370.61" height="150" strokeWidth="3.75" />
     <g transform="scale(3.75)" fill="#fff">
       <path d="m9.66 3.86h10.75l6.59 22.33h0.1l4.52-22.33h8.12l-6.83 32.2h-10.7l-6.74-22.28h-0.09l-4.47 22.28h-8.12z" />
