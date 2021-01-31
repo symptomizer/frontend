@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import { Search } from "./__generated__/Search";
 import { SearchResults } from "../components/SearchResults";
 import { Footer } from "../components/Footer";
+import { useProfile } from "../utils/useProfile";
 
 const SEARCH = gql`
   query Search($term: String!) {
@@ -39,6 +40,13 @@ export const SearchPage: FC = () => {
     variables: { term: searchTerm },
   });
 
+  const {
+    loading: profileLoading,
+    imageURL,
+    name,
+    emailAddress,
+  } = useProfile();
+
   return (
     <div style={{ minHeight: "712px" }} className="overflow-y-auto">
       <div className="min-h-screen bg-gray-100">
@@ -47,7 +55,7 @@ export const SearchPage: FC = () => {
             <div className="relative py-5 flex items-center justify-center lg:justify-between">
               {/* Logo */}
               <div className="absolute left-0 flex-shrink-0 lg:static">
-                <a href="/">
+                <a href="/search">
                   <span className="sr-only">Workflow</span>
                   <img
                     className="h-8 w-auto"
@@ -91,8 +99,8 @@ export const SearchPage: FC = () => {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                              alt=""
+                              src={imageURL}
+                              alt="Profile"
                             />
                           </div>
                         </Menu.Button>
@@ -110,7 +118,7 @@ export const SearchPage: FC = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/"
+                                href="/search"
                                 className={classNames(
                                   "block px-4 py-2 text-sm text-gray-700",
                                   { "bg-gray-100": active }
@@ -124,7 +132,7 @@ export const SearchPage: FC = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/"
+                                href="/search"
                                 className={classNames(
                                   "block px-4 py-2 text-sm text-gray-700",
                                   { "bg-gray-100": active }
@@ -137,18 +145,16 @@ export const SearchPage: FC = () => {
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <Link to="/login">
-                                <a
-                                  href="/"
-                                  className={classNames(
-                                    "block px-4 py-2 text-sm text-gray-700",
-                                    { "bg-gray-100": active }
-                                  )}
-                                  role="menuitem"
-                                >
-                                  Sign out
-                                </a>
-                              </Link>
+                              <a
+                                href="/logout"
+                                className={classNames(
+                                  "block px-4 py-2 text-sm text-gray-700",
+                                  { "bg-gray-100": active }
+                                )}
+                                role="menuitem"
+                              >
+                                Sign out
+                              </a>
                             )}
                           </Menu.Item>
                         </Menu.Items>
@@ -246,44 +252,44 @@ export const SearchPage: FC = () => {
                 <div className="col-span-2">
                   <nav className="flex space-x-4">
                     <Link
-                      to="/"
+                      to="/search"
                       className="text-white text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="page"
                     >
-                      Home
+                      Search
                     </Link>
 
-                    <a
-                      href="/"
+                    <Link
+                      to="/search"
                       className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Profile
-                    </a>
+                    </Link>
 
-                    <a
-                      href="/"
+                    <Link
+                      to="/search"
                       className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Resources
-                    </a>
+                    </Link>
 
-                    <a
-                      href="/"
+                    <Link
+                      to="/search"
                       className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Company Directory
-                    </a>
+                    </Link>
 
-                    <a
-                      href="/"
+                    <Link
+                      to="/search"
                       className="text-cyan-100 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                       aria-current="false"
                     >
                       Openings
-                    </a>
+                    </Link>
                   </nav>
                 </div>
                 <div>
@@ -382,35 +388,35 @@ export const SearchPage: FC = () => {
                 </div>
                 <div className="mt-3 px-2 space-y-1">
                   <Link
-                    to="/"
+                    to="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
-                    Home
+                    Search
                   </Link>
-                  <a
-                    href="/"
+                  <Link
+                    to="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Profile
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    to="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Resources
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    to="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Company Directory
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    to="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Openings
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="pt-4 pb-2">
@@ -418,16 +424,16 @@ export const SearchPage: FC = () => {
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                      alt=""
+                      src={imageURL}
+                      alt="Profile"
                     />
                   </div>
                   <div className="ml-3 min-w-0 flex-1">
                     <div className="text-base font-medium text-gray-800 truncate">
-                      Rebecca Nicholas
+                      {profileLoading ? "Loading..." : name}
                     </div>
                     <div className="text-sm font-medium text-gray-500 truncate">
-                      rebecca.nicholas@example.com
+                      {profileLoading ? "Loading..." : emailAddress}
                     </div>
                   </div>
                   <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
@@ -451,19 +457,19 @@ export const SearchPage: FC = () => {
                 </div>
                 <div className="mt-3 px-2 space-y-1">
                   <a
-                    href="/"
+                    href="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Your Profile
                   </a>
                   <a
-                    href="/"
+                    href="/search"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Settings
                   </a>
                   <a
-                    href="/"
+                    href="/logout"
                     className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
                   >
                     Sign out

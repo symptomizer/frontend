@@ -5,7 +5,9 @@
       dir: "build",
     },
     "@fab/plugin-precompile": {
-      "./api/graphql/index.ts": {},
+      "./api/graphql/index.ts": {
+        _config: "./plugin-overrides.js",
+      },
       "./api/auth/index.ts": {
         _config: "./plugin-overrides.js",
       },

@@ -34,11 +34,26 @@ directive @connection(
 
 type Query {
   hello: String!
+  version: String!
   node(id: ID!): Node
+  me: User
   externalSources(first: Int, after: String, last: Int, before: String): ExternalSourceConnection!
   search(query: String!): SearchResult!
+  suggestString(queryString: String!): [String!]!
 }
 
+type Mutation {
+  hello: String!
+}
+
+"""
+A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
+"""
+scalar EmailAddress
+
+"""
+A field whose value conforms to the standard URL format as specified in RFC3986: https://www.ietf.org/rfc/rfc3986.txt.
+"""
 scalar URL
 
 interface Node {
@@ -50,6 +65,12 @@ type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
   startCursor: String
+}
+
+type User {
+  name: String
+  emailAddress: EmailAddress!
+  imageURL: URL
 }
 
 type ExternalSource implements Node {
