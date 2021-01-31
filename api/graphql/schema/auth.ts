@@ -22,7 +22,9 @@ export const resolvers = {
       if (jwt) {
         const hash = md5(jwt.email);
         const response = await fetch(`https://gravatar.com/${hash}.json`);
-        const json = await response.json();
+        console.log(response.text());
+        // const json = await response.json();
+        const json = { entry: [{ displayName: "Name" }] };
         const data = json.entry[0];
         return {
           emailAddress: jwt.email,

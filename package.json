@@ -31,7 +31,7 @@
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
     "validate": "concurrently \"npm:check-types\" \"npm:check-format\" \"npm:lint\" \"npm:build\"",
-    "fab:build": "fab build",
+    "fab:build": "fab build --minify",
     "fab:serve": "fab serve fab.zip",
     "pretest": "npm run validate",
     "test": "craco test",

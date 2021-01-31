@@ -14,5 +14,6 @@ export const makeContextValueMaker = ({
   request: Request
 ): Promise<Context> => {
   const jwt = (await authenticateRequest(request)) || undefined;
+  console.log(jwt);
   return { version: bundle_id, jwt };
 };
