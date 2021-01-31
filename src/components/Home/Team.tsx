@@ -14,8 +14,8 @@ export const Team: FC = () => (
           Meet the team
         </h2>
         <p className="text-xl text-gray-500">
-          Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae
-          elementum enim vitae ullamcorper suspendisse. Vivamus fringilla.
+          Aren't we fabulous? Look at all the cool stuff we've built. Not bad
+          for a ragtag group of computer scientists.
         </p>
       </div>
       <div className="lg:col-span-2">

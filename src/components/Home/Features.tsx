@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 export const Features: FC = () => (
-  <div className="bg-cyan-700">
+  <div className="bg-cyan-700" id="features">
     <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8">
       <h2 className="text-3xl font-extrabold text-white tracking-tight">
-        Inbox support built for efficiency
+        A bunch of cool search features
       </h2>
       <p className="mt-4 max-w-3xl text-lg text-cyan-200">
-        Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna
-        sit morbi lobortis. Blandit aliquam sit nisl euismod mattis in.
+        Build with some of the the latest technologies for data science
+        including things like magic and TF-IDF, whatever that is.
       </p>
       <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
         <div>
@@ -16,7 +16,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: inbox"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -34,7 +33,7 @@ export const Features: FC = () => (
           </div>
           <div className="mt-6">
             <h3 className="text-lg font-medium text-white">
-              Unlimited Inboxes
+              Typo-tolerant TF-IDF
             </h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
@@ -48,7 +47,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: users"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -65,9 +63,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">
-              Manage Team Members
-            </h3>
+            <h3 className="text-lg font-medium text-white">GraphQL</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -80,7 +76,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: trash"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -97,7 +92,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Spam Report</h3>
+            <h3 className="text-lg font-medium text-white">Cron triggers</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -110,7 +105,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: pencil-alt"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -127,9 +121,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">
-              Compose in Markdown
-            </h3>
+            <h3 className="text-lg font-medium text-white">React</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -142,7 +134,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: document-report"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -159,7 +150,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Team Reporting</h3>
+            <h3 className="text-lg font-medium text-white">Live indexing</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -172,7 +163,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: reply"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -189,7 +179,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Saved Replies</h3>
+            <h3 className="text-lg font-medium text-white">Caching</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -202,7 +192,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: chat-alt"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -219,7 +208,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Email Commenting</h3>
+            <h3 className="text-lg font-medium text-white">JavaScript</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.
@@ -232,7 +221,6 @@ export const Features: FC = () => (
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
               <svg
                 className="h-6 w-6 text-white"
-                data-todo-x-description="Heroicon name: heart"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -249,9 +237,7 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">
-              Connect with Customers
-            </h3>
+            <h3 className="text-lg font-medium text-white">Python</h3>
             <p className="mt-2 text-base text-cyan-200">
               Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
               magna sit morbi lobortis.

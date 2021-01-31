@@ -4,6 +4,7 @@ import { Features } from "../components/Home/Features";
 import { Team } from "../components/Home/Team";
 import { Stats } from "../components/Home/Stats";
 import { Footer } from "../components/Footer";
+import { FooterCTA } from "../components/Home/FooterCTA";
 
 export const Home: FC = () => (
   <div>
@@ -11,6 +12,7 @@ export const Home: FC = () => (
     <Stats />
     <Features />
     <Team />
-    <Footer />
+    <FooterCTA />
+    <Footer border={false} />
   </div>
 );

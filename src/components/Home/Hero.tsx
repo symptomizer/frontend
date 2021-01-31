@@ -15,12 +15,12 @@ export const Hero: FC = () => (
           </div>
           <div className="mt-20">
             <div>
-              <a href="/" className="inline-flex space-x-4">
+              <a href="#stats" className="inline-flex space-x-4">
                 <span className="rounded bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-600 tracking-wide uppercase">
                   What's new
                 </span>
                 <span className="inline-flex items-center text-sm font-medium text-cyan-600 space-x-1">
-                  <span>Just shipped version 1.0.0</span>
+                  <span>Live indexing in 3.1.0</span>
                   <svg
                     className="h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@ export const Hero: FC = () => (
                 Search for conditions, drugs, treatments and more
               </h1>
               <p className="mt-6 text-xl text-gray-500">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo.
+                Symptomizer can instantly search through hundreds of thousands
+                of documents to find you exactly what you're looking for.
               </p>
             </div>
             <div className="mt-12 sm:max-w-lg sm:w-full sm:flex">
@@ -53,6 +53,14 @@ export const Hero: FC = () => (
                   className="block w-full rounded-md border border-transparent px-5 py-3 bg-cyan-600 text-base font-medium text-white shadow hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:px-10"
                 >
                   Get Started
+                </a>
+              </div>
+              <div className="mt-3 sm:mt-0 sm:ml-3">
+                <a
+                  href="#stats"
+                  className="block w-full rounded-md border border-transparent px-5 py-3 bg-cyan-100 text-base font-medium text-cyan-700 shadow hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:px-10"
+                >
+                  Learn more
                 </a>
               </div>
             </div>
