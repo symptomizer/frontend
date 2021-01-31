@@ -1,11 +1,7 @@
 import { SearchPage } from "./pages/Search";
+import { Home } from "./pages/Home";
 // import { Login } from "./pages/Login";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./client";
 
@@ -21,7 +17,7 @@ function App() {
             <SearchPage />
           </Route>
           <Route path="/" exact>
-            <Redirect to="/search" />
+            <Home />
           </Route>
         </Switch>
       </Router>
