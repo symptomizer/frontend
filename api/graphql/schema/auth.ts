@@ -27,7 +27,7 @@ export const resolvers = {
         return {
           emailAddress: jwt.email,
           name: data.displayName,
-          imageURL: `https://gravatar.com/avatar/${hash}`,
+          imageURL: `https://www.gravatar.com/avatar/${hash}&d=mp`,
         };
       }
     },
