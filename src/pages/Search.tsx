@@ -35,6 +35,24 @@ const SEARCH = gql`
 export const SearchPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [newSearchCounts, setNewSearchCounts] = useState(0);
+
+  const fireSearchNumUpdates = async () => {
+    const response = await fetch(
+      "https://europe-west2-symptomizer.cloudfunctions.net/increment-search",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count: newSearchCounts }),
+      }
+    );
+
+    console.log(response.text); // parses JSON response into native JavaScript objects
+
+    setNewSearchCounts(0);
+  };
 
   const searchResults = useQuery<Search>(SEARCH, {
     variables: { term: searchTerm },
@@ -188,7 +206,11 @@ export const SearchPage: FC = () => {
                       type="search"
                       name="search"
                       value={searchTerm}
-                      onChange={(event) => setSearchTerm(event.target.value)}
+                      onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                        setNewSearchCounts(newSearchCounts + 1);
+                      }}
+                      onBlur={() => fireSearchNumUpdates()}
                     />
                   </div>
                 </div>
