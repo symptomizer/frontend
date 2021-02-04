@@ -37,4 +37,15 @@ const loginHandler = async (request: Request): Promise<Response> => {
 
 export default function login({ Router, ServerContext }: FABRuntime) {
   Router.on("/login", ({ request }) => loginHandler(request));
+  Router.on(
+    "/logout",
+    async () =>
+      new Response(null, {
+        status: 302,
+        headers: {
+          Location: "https://www.ease.ed.ac.uk/logout/logout.cgi",
+          "Set-Cookie": cookie.serialize("jwt", "", { expires: new Date(0) }),
+        },
+      })
+  );
 }
