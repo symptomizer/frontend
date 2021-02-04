@@ -1,7 +1,6 @@
 import { ServerContext } from "@fab/runtime";
-import { JWTPayload } from "@glenstack/cf-workers-access";
 import { ContextValueMaker } from "@glenstack/cf-workers-graphql";
-import { authenticateRequest } from "../auth/authenticator";
+import { JWTPayload, verifyJWT } from "../auth/jwt";
 
 export type Context = {
   version: string;
@@ -13,7 +12,7 @@ export const makeContextValueMaker = ({
 }: ServerContext): ContextValueMaker => async (
   request: Request
 ): Promise<Context> => {
-  const jwt = (await authenticateRequest(request)) || undefined;
-  console.log(jwt);
-  return { version: bundle_id, jwt };
+  // const jwt = (await authenticateRequest(request)) || undefined;
+  // console.log(jwt);
+  return { version: bundle_id };
 };

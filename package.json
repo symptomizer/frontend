@@ -5,7 +5,6 @@
   "dependencies": {
     "@apollo/client": "3.3.7",
     "@fontsource/inter": "4.1.0",
-    "@glenstack/cf-workers-access": "1.0.8",
     "@glenstack/cf-workers-graphql": "1.0.4",
     "@graphql-tools/schema": "6.0.18",
     "@headlessui/react": "0.2.0",
@@ -14,6 +13,7 @@
     "graphql-relay-tools": "0.1.1",
     "graphql-scalars": "1.7.0",
     "graphql-tag": "2.11.0",
+    "node-jose": "2.0.0",
     "react": "17.0.1",
     "react-animate-height": "2.0.23",
     "react-dom": "17.0.1",
@@ -77,6 +77,7 @@
     "@types/classnames": "2.2.11",
     "@types/jest": "26.0.20",
     "@types/node": "14.14.22",
+    "@types/node-jose": "1.1.5",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/react-router-dom": "5.1.7",
