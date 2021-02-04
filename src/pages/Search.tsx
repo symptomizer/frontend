@@ -40,12 +40,7 @@ export const SearchPage: FC = () => {
     variables: { term: searchTerm },
   });
 
-  const {
-    loading: profileLoading,
-    imageURL,
-    name,
-    emailAddress,
-  } = useProfile();
+  const { id, imageURL } = useProfile();
 
   return (
     <div style={{ minHeight: "712px" }} className="overflow-y-auto">
@@ -430,10 +425,10 @@ export const SearchPage: FC = () => {
                   </div>
                   <div className="ml-3 min-w-0 flex-1">
                     <div className="text-base font-medium text-gray-800 truncate">
-                      {profileLoading ? "Loading..." : name}
+                      {id}
                     </div>
                     <div className="text-sm font-medium text-gray-500 truncate">
-                      {profileLoading ? "Loading..." : emailAddress}
+                      {id}
                     </div>
                   </div>
                   <button className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">

@@ -4,8 +4,7 @@ import { Profile as ProfileQuery } from "./__generated__/Profile";
 const PROFILE = gql`
   query Profile {
     me {
-      name
-      emailAddress
+      id
       imageURL
     }
   }
@@ -13,22 +12,21 @@ const PROFILE = gql`
 
 type Profile = {
   loading: boolean;
-  name?: string;
-  emailAddress?: string;
+  id: string;
   imageURL: string;
 };
 
-const DEFAULT_IMAGE_URL = `https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y`;
+const DEFAULT_IMAGE_URL = "https://symptomize.me/avatars/blackonwhite.png";
 
 export const useProfile = (): Profile => {
   const { loading, error, data } = useQuery<ProfileQuery>(PROFILE);
 
-  if (error) return { loading: false, imageURL: DEFAULT_IMAGE_URL };
+  if (error)
+    return { loading: false, id: "Error", imageURL: DEFAULT_IMAGE_URL };
 
   return {
     loading,
-    name: data?.me?.name || undefined,
-    emailAddress: data?.me?.emailAddress || undefined,
+    id: data?.me?.id || "Loading...",
     imageURL: data?.me?.imageURL || DEFAULT_IMAGE_URL,
   };
 };

@@ -9,9 +9,8 @@
 
 export interface Profile_me {
   __typename: "User";
-  name: string | null;
-  emailAddress: any;
-  imageURL: any | null;
+  id: string;
+  imageURL: string;
 }
 
 export interface Profile {
