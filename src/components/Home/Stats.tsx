@@ -33,8 +33,8 @@ export const Stats: FC = () => {
             Trusted by at least one medical student
           </h2>
           <p className="mt-3 text-xl text-gray-500 sm:mt-4">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Repellendus repellat laudantium.
+            We have collected, processed, and indexed documents from only the most reputable sources of
+            medical information. Our users can feel comfortable that they are getting accurate information.
           </p>
         </div>
       </div>
