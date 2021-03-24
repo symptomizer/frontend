@@ -6,12 +6,34 @@ const { connectionType: DocumentConnection } = connectionDefinitions({
 });
 
 export const typeDefs = gql`
+  type JournalReference {
+    title: String
+    volume: String
+    issue: String
+    start: String
+    end: String
+  }
+
+  type DocumentContent {
+    id: ID!
+    url: URL!
+    text: String!
+  }
+
+  enum DocumentType {
+    "A clinical guidance document"
+    GUIDANCE
+    "An overview of a condition, drug or treatment which is typically patient-facing"
+    OVERVIEW
+  }
+
   type Document implements Node {
     id: ID!
-    name: String!
-    description: String
+    title: String!
+    description: String!
+    content: [String!]!
     url: URL!
-    externalSource: ExternalSource!
+    source: String!
   }
 
   ${DocumentConnection}
