@@ -29,7 +29,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Greg Brimble</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">Front-End</p>
               </div>
             </div>
           </li>
@@ -43,7 +43,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Ragnor Comerford</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">Information Retrieval</p>
               </div>
             </div>
           </li>
@@ -57,7 +57,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Mohammad Javad</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">DevOps and Front-End</p>
               </div>
             </div>
           </li>
@@ -71,7 +71,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Benedicty Mambi</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">Data Compilation</p>
               </div>
             </div>
           </li>
@@ -85,7 +85,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Liana Mostafa</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">Data Compilation</p>
               </div>
             </div>
           </li>
@@ -99,7 +99,7 @@ export const Team: FC = () => (
               />
               <div className="font-medium text-lg leading-6 space-y-1">
                 <h3>Barnabás Ujvári</h3>
-                <p className="text-cyan-600">Job Description</p>
+                <p className="text-cyan-600">Information Retrieval</p>
               </div>
             </div>
           </li>

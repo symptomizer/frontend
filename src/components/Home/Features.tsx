@@ -1,4 +1,19 @@
 import { FC } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGlasses,
+  faSearch,
+  faQuestion,
+  faDatabase,
+  faInfoCircle,
+  faCloud,
+  faStopwatch,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faReact,
+  faDocker,
+  faPython,
+} from "@fortawesome/free-brands-svg-icons";
 
 export const Features: FC = () => (
   <div className="bg-cyan-700" id="features">
@@ -7,28 +22,14 @@ export const Features: FC = () => (
         A bunch of cool search features
       </h2>
       <p className="mt-4 max-w-3xl text-lg text-cyan-200">
-        Build with some of the the latest technologies for data science
+        Built with some of the the latest technologies for data science
         including things like magic and TF-IDF, whatever that is.
       </p>
       <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faGlasses} color="white" />
             </span>
           </div>
           <div className="mt-6">
@@ -36,8 +37,9 @@ export const Features: FC = () => (
               Typo-tolerant TF-IDF
             </h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              Using N-gram based TF-IDF, there is some level of typo-tolerance
+              in our index construction and retrieval system, to allow for a
+              convenient search experience.
             </p>
           </div>
         </div>
@@ -45,28 +47,17 @@ export const Features: FC = () => (
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faQuestion} color="white" />
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">GraphQL</h3>
+            <h3 className="text-lg font-medium text-white">
+              BERT-based Question Answering
+            </h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              A question-answering tool has been developed with state-of-the-art
+              NLP models to be able to parse a question and retrieve the answer
+              to the question from our large compiled dataset.
             </p>
           </div>
         </div>
@@ -74,28 +65,16 @@ export const Features: FC = () => (
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faSearch} color="white" />
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Cron triggers</h3>
+            <h3 className="text-lg font-medium text-white">
+              Boolean & Phrase Search
+            </h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              To accomodate for more specified and precise searching,
+              Symptomizer includes basic boolean and phrase search.
             </p>
           </div>
         </div>
@@ -103,28 +82,34 @@ export const Features: FC = () => (
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faInfoCircle} color="white" size="lg" />
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">React</h3>
+            <h3 className="text-lg font-medium text-white">Information Box</h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              Similar to modern search engines, when possible Symptomizer will
+              display an 'Information Box' that contains basic facts and key
+              points about the query.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
+              <FontAwesomeIcon icon={faDatabase} color="white" />
+            </span>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-lg font-medium text-white">
+              Custom Compiled Dataset
+            </h3>
+            <p className="mt-2 text-base text-cyan-200">
+              A large dataset containing a mixture of medical publications, and
+              publicly available information was compiled by the Symptomizer
+              team. These sources were carefully curated and parsed by the data
+              team.
             </p>
           </div>
         </div>
@@ -150,10 +135,17 @@ export const Features: FC = () => (
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">Live indexing</h3>
+            <h3 className="text-lg font-medium text-white">Live Indexing</h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              As the data compilation contains a large collection of documents,
+              the IR system is able to run live indexing. This means that over
+              time, more and more documents will be added and indexed. Don't
+              believe us? The counter{" "}
+              <a href="#stats" className="text-white">
+                here
+              </a>{" "}
+              shows the current number of documents that have been added to our
+              index so far.
             </p>
           </div>
         </div>
@@ -181,8 +173,10 @@ export const Features: FC = () => (
           <div className="mt-6">
             <h3 className="text-lg font-medium text-white">Caching</h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              Dealing with such large datasets means that the data needs to be
+              stored in the correct way. The indices and data is cached in the
+              cloud in order to keep it synced and prevent unnecessary
+              reprocessing.
             </p>
           </div>
         </div>
@@ -190,28 +184,16 @@ export const Features: FC = () => (
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faStopwatch} color="white" size="lg" />
             </span>
           </div>
           <div className="mt-6">
-            <h3 className="text-lg font-medium text-white">JavaScript</h3>
+            <h3 className="text-lg font-medium text-white">Cron Triggers</h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              Automatic jobs have been created to run live indexing, and pull
+              the latest indices from the cloud. Additionally, these cron jobs
+              are used to clear the server from old data, and keep everything up
+              and running.
             </p>
           </div>
         </div>
@@ -219,28 +201,66 @@ export const Features: FC = () => (
         <div>
           <div>
             <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
-              <svg
-                className="h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                ></path>
-              </svg>
+              <FontAwesomeIcon icon={faReact} color="white" size="lg" />
+            </span>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-lg font-medium text-white">React + TS</h3>
+            <p className="mt-2 text-base text-cyan-200">
+              The web interface of Symptomizer has been build with React and
+              Typescript, which are the de-facto industry standard frontend
+              frameworks. This ensures a modern and smooth experience for our
+              users.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
+              <FontAwesomeIcon icon={faPython} color="white" size="lg" />
             </span>
           </div>
           <div className="mt-6">
             <h3 className="text-lg font-medium text-white">Python</h3>
             <p className="mt-2 text-base text-cyan-200">
-              Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-              magna sit morbi lobortis.
+              What is there to say about Python? Such a simple, yet amazing
+              language. But you already know that... Symptomizer uses Python for
+              indexing, and the information retrieval part of the application.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
+              <FontAwesomeIcon icon={faDocker} color="white" size="lg" />
+            </span>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-lg font-medium text-white">Docker + CI/CD</h3>
+            <p className="mt-2 text-base text-cyan-200">
+              Using Docker, we can containerize the distribution and deployment
+              of our application. This means that we can automatically update
+              and continously deliver the latest version of Symptomizer to our
+              amazing users.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
+              <FontAwesomeIcon icon={faCloud} color="white" />
+            </span>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-lg font-medium text-white">Cloud Based</h3>
+            <p className="mt-2 text-base text-cyan-200">
+              Leveraging the power of the cloud (and the free credit given to
+              students), Symptomizer is deployed on Google Cloud Platform, using
+              various cloud technologies to be able to host and create a
+              production ready application.
             </p>
           </div>
         </div>
