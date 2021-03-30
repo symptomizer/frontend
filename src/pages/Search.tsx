@@ -9,6 +9,7 @@ import { SearchResults } from "../components/SearchResults";
 import { QAResults } from "../components/QAResults";
 import { Footer } from "../components/Footer";
 import { useProfile } from "../utils/useProfile";
+import WhiteLogo from "../assets/logo/white.png";
 
 const SEARCH = gql`
   query Search($term: String!) {
@@ -80,11 +81,7 @@ export const SearchPage: FC = () => {
               <div className="absolute left-0 flex-shrink-0 lg:static">
                 <a href="/search">
                   <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg"
-                    alt="Workflow"
-                  />
+                  <img className="h-9 w-auto" src={WhiteLogo} alt="Workflow" />
                 </a>
               </div>
 

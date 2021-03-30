@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { LogoCloud } from "./LogoCloud";
 import HeroSC from "../../assets/heroAssets/hero-sc.jpg";
+import CyanLogo600 from "../../assets/logo/cyan-600-inverted.png";
 
 export const Hero: FC = () => (
   <div className="pb-8 sm:pb-12 lg:pb-12">
@@ -8,11 +9,7 @@ export const Hero: FC = () => (
       <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
         <div>
           <div>
-            <img
-              className="h-11 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark.svg?color=cyan&amp;shade=600"
-              alt="Workflow"
-            />
+            <img className="h-20 w-auto" src={CyanLogo600} alt="Workflow" />
           </div>
           <div className="mt-20">
             <div>
