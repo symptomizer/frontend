@@ -1,11 +1,12 @@
 import gql from "graphql-tag";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Search } from "./__generated__/Search";
 import { SearchResults } from "../components/SearchResults";
+import { QAResults } from "../components/QAResults";
 import { Footer } from "../components/Footer";
 import { useProfile } from "../utils/useProfile";
 
@@ -36,6 +37,15 @@ export const SearchPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [newSearchCounts, setNewSearchCounts] = useState(0);
+  const [loadingQA, setLoadingQA] = useState(true);
+
+  // Just here to demo how the QA would take longer to load. To remove when it's actually hooked up I guess.
+  useEffect(() => {
+    setLoadingQA(true);
+    setTimeout(() => {
+      setLoadingQA(false);
+    }, 3000);
+  }, [searchTerm]);
 
   const fireSearchNumUpdates = async () => {
     const response = await fetch(
@@ -521,6 +531,12 @@ export const SearchPage: FC = () => {
                   <h2 className="sr-only" id="section-2-title">
                     Section title
                   </h2>
+                  {searchTerm.length > 0 && (
+                    <QAResults
+                      loading={loadingQA}
+                      data={{ answer: "osteoperosis", confidence: 0.9888 }}
+                    />
+                  )}
                   <div className="rounded-lg bg-white overflow-hidden shadow">
                     <div className="px-6 py-2">
                       <SearchResults {...searchResults} />
