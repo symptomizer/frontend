@@ -39,6 +39,11 @@ export const QAResults = ({
           <div className="absolute bottom-2 right-4">
             <p className="text-xs text-gray-500">{confidenceStr}</p>
           </div>
+          <div className="absolute bottom-2 left-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-800 to-cyan-500 lowercase tracking-wide text-xs font-normal">
+              Beta v0.5
+            </span>
+          </div>
         </div>
       </Transition>
     );

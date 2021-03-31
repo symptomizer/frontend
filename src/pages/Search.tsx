@@ -10,6 +10,7 @@ import { QAResults } from "../components/QAResults";
 import { Footer } from "../components/Footer";
 import { useProfile } from "../utils/useProfile";
 import WhiteLogo from "../assets/logo/white.png";
+import { InfoBox, InfoBoxDataType } from "../components/InfoBox";
 
 const SEARCH = gql`
   query Search($term: String!) {
@@ -39,7 +40,7 @@ export const SearchPage: FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [newSearchCounts, setNewSearchCounts] = useState(0);
   const [loadingQA, setLoadingQA] = useState(true);
-
+  const [infoBoxData, setInfoBoxData] = useState<InfoBoxDataType>({});
   // Just here to demo how the QA would take longer to load. To remove when it's actually hooked up I guess.
   useEffect(() => {
     setLoadingQA(true);
@@ -63,6 +64,22 @@ export const SearchPage: FC = () => {
     console.log(response.text); // parses JSON response into native JavaScript objects
 
     setNewSearchCounts(0);
+  };
+
+  // Temporary for me to fetch from infobox. Should be replaced
+  const getInfoBoxData = async (title: string) => {
+    const response = await fetch(
+      `http://35.214.36.96:8889/info?search=${title}`
+    );
+    const json = await response.json();
+
+    if (json.status && json.status === 200) {
+      if (Object.keys(json.data.infobox).length > 1) {
+        setInfoBoxData(json.data);
+      }
+    } else {
+      console.warn("Fetch from infobox did not yield results.");
+    }
   };
 
   const searchResults = useQuery<Search>(SEARCH, {
@@ -216,8 +233,12 @@ export const SearchPage: FC = () => {
                       onChange={(event) => {
                         setSearchTerm(event.target.value);
                         setNewSearchCounts(newSearchCounts + 1);
+                        setInfoBoxData({});
                       }}
-                      onBlur={() => fireSearchNumUpdates()}
+                      onBlur={() => {
+                        getInfoBoxData(searchTerm);
+                        fireSearchNumUpdates();
+                      }}
                     />
                   </div>
                 </div>
@@ -344,7 +365,15 @@ export const SearchPage: FC = () => {
                         type="search"
                         name="search"
                         value={searchTerm}
-                        onChange={(event) => setSearchTerm(event.target.value)}
+                        onChange={(event) => {
+                          setSearchTerm(event.target.value);
+                          setNewSearchCounts(newSearchCounts + 1);
+                          setInfoBoxData({});
+                        }}
+                        onBlur={() => {
+                          getInfoBoxData(searchTerm);
+                          fireSearchNumUpdates();
+                        }}
                       />
                     </div>
                   </div>
@@ -532,6 +561,13 @@ export const SearchPage: FC = () => {
                     <QAResults
                       loading={loadingQA}
                       data={{ answer: "osteoperosis", confidence: 0.9888 }}
+                    />
+                  )}
+                  {searchTerm.length > 0 && (
+                    <InfoBox
+                      loading={Object.keys(infoBoxData).length === 0}
+                      data={infoBoxData}
+                      search={searchTerm}
                     />
                   )}
                   <div className="rounded-lg bg-white overflow-hidden shadow">
