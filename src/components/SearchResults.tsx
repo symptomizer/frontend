@@ -6,6 +6,7 @@ import {
 import classNames from "classnames";
 import { BadgeCheckIcon } from "@heroicons/react/outline";
 import { truncate } from "../utils/truncate";
+import { Transition } from "@headlessui/react";
 
 const SearchResult = ({
   node,
@@ -68,8 +69,40 @@ export const SearchResults = ({
     document?: SearchDocuments_search_documents_edges_node
   ) => void;
 }) => {
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {JSON.stringify(error)}</div>;
+  if (loading || error)
+    return (
+      <Transition
+        appear={true}
+        show={loading}
+        enter="transition-opacity duration-500"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-500"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="mt-4 border border-gray-200 shadow rounded-md mb-4 p-4 w-full mx-auto">
+          <div className="animate-pulse flex space-x-4">
+            <div className="flex-1 space-y-2 py-1 ">
+              <div className="space-y-2 border-b-1">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+              <div className="space-y-2 border-b-1">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    );
+  // if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {JSON.stringify(error)}</div>;
 
   const documentEdges = data?.search.documents.edges || [];
   return (

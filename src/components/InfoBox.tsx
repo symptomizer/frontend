@@ -65,10 +65,32 @@ export const InfoBox = ({
   data?: SearchInfobox_search_infobox | null;
   search: string;
 }) => {
-  if (!search || error) return <></>;
+  const notRender = !search || error || !data;
 
-  if (loading) return <div>Loading...</div>;
-  if (!data) return <></>;
+  if (loading || notRender)
+    return (
+      <Transition
+        appear={true}
+        show={!notRender}
+        enter="transition-opacity duration-500"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-500"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="border border-gray-200 shadow rounded-md mb-4 p-4 w-full mx-auto">
+          <div className="animate-pulse flex space-x-4">
+            <div className="flex-1 space-y-2 py-1">
+              <div className="h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    );
+  // if (!data) return <></>;
 
   const title =
     data && data.infobox && data.infobox.name
