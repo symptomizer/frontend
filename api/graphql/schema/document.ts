@@ -107,6 +107,8 @@ export const mapDocument = (document) => {
   );
   document.isbn = nullable(document.isbn);
   document.issn = nullable(document.issn);
+  document.publisher = nullable(document.publisher);
+  document.pubMedID = nullable(document.pubMedID);
   if (
     document.journalReference &&
     (document.journalReference.title ||
@@ -127,8 +129,6 @@ export const mapDocument = (document) => {
   document.meshHeadings = removeNulls(listify(document.meshHeadings));
   document.meshQualifiers = removeNulls(listify(document.meshQualifiers));
   document.pmcID = nullable(document.pmcID);
-  document.publisher = nullable(document.publisher);
-  document.pubMedID = nullable(document.pubMedID);
   document.rights = nullable(document.rights);
   document.source = documentSourceResolvers.Query.documentSource(null, {
     id: document.source.id,
@@ -164,6 +164,7 @@ export const mapDocument = (document) => {
         ...image,
         url: "https://app.who.int" + image.url,
       }));
+      break;
     }
   }
 
