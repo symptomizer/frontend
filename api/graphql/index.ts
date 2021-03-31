@@ -11,6 +11,11 @@ export default function graphql({ Router, ServerContext }: FABRuntime) {
   });
 
   Router.on("/graphql", async ({ request }) => {
+    if (request.method === "OPTIONS")
+      return new Response(null, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+
     const response = await graphQLHandler(request);
     response.headers.set("Access-Control-Allow-Origin", "*");
     return response;
