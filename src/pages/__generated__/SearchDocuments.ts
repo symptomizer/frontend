@@ -9,6 +9,14 @@ import { DocumentType } from "./../../../__generated__/globalTypes";
 // GraphQL query operation: SearchDocuments
 // ====================================================
 
+export interface SearchDocuments_search_documents_pageInfo {
+  __typename: "PageInfo";
+  endCursor: string | null;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string | null;
+}
+
 export interface SearchDocuments_search_documents_edges_node_authors {
   __typename: "Author";
   name: string;
@@ -77,6 +85,7 @@ export interface SearchDocuments_search_documents_edges {
 
 export interface SearchDocuments_search_documents {
   __typename: "DocumentConnection";
+  pageInfo: SearchDocuments_search_documents_pageInfo;
   edges: (SearchDocuments_search_documents_edges | null)[] | null;
 }
 
@@ -91,4 +100,6 @@ export interface SearchDocuments {
 
 export interface SearchDocumentsVariables {
   query: string;
+  after?: string | null;
+  before?: string | null;
 }

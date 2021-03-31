@@ -37,9 +37,15 @@ const QUESTION = gql`
 `;
 
 const SEARCH_DOCUMENTS = gql`
-  query SearchDocuments($query: String!) {
+  query SearchDocuments($query: String!, $after: String, $before: String) {
     search(query: $query) {
-      documents(first: 10) {
+      documents(first: 10, after: $after, before: $before) {
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
         edges {
           node {
             id
@@ -134,6 +140,10 @@ const SEARCH_INFOBOX = gql`
 
 export const SearchPage = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [pagination, setPagination] = useState<{
+    before?: string;
+    after?: string;
+  }>({});
 
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -145,7 +155,10 @@ export const SearchPage = () => {
   });
 
   const searchDocuments = useQuery<SearchDocuments>(SEARCH_DOCUMENTS, {
-    variables: { query: debouncedSearchTerm },
+    variables: {
+      query: debouncedSearchTerm,
+      ...pagination,
+    },
   });
 
   const infobox = useQuery<SearchInfobox>(SEARCH_INFOBOX, {
@@ -422,6 +435,7 @@ export const SearchPage = () => {
                     {...searchDocuments}
                     selectedDocument={selectedDocument}
                     setSelectedDocument={setSelectedDocument}
+                    setPagination={setPagination}
                   />
                 </>
               ) : (

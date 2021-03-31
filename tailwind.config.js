@@ -27,7 +27,17 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      cursor: ["responsive", "disabled"],
+      backgroundColor: [
+        "responsive",
+        "group-hover",
+        "focus-within",
+        "hover",
+        "focus",
+        "disabled",
+      ],
+    },
   },
   plugins: [
     require("@tailwindcss/aspect-ratio"),

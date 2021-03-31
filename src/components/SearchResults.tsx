@@ -61,17 +61,25 @@ export const SearchResults = ({
   error,
   data,
   selectedDocument,
+  setPagination,
   setSelectedDocument,
 }: QueryResult<SearchDocuments> & {
   selectedDocument?: SearchDocuments_search_documents_edges_node;
+  setPagination: ({
+    before,
+    after,
+  }: {
+    before?: string;
+    after?: string;
+  }) => void;
   setSelectedDocument: (
     document?: SearchDocuments_search_documents_edges_node
   ) => void;
 }) => {
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {JSON.stringify(error)}</div>;
+  if (error || !data) return <div>Error: {JSON.stringify(error)}</div>;
 
-  const documentEdges = data?.search.documents.edges || [];
+  const documentEdges = data.search.documents.edges || [];
   return (
     <div className="mt-8 mb-16 bg-white shadow overflow-hidden sm:rounded-md">
       <ul className="divide-y divide-gray-200">
@@ -87,7 +95,7 @@ export const SearchResults = ({
             )
         )}
       </ul>
-      {/* <nav
+      <nav
         className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
         aria-label="Pagination"
       >
@@ -100,20 +108,30 @@ export const SearchResults = ({
           </p>
         </div>
         <div className="flex-1 flex justify-between sm:justify-end">
-          <a
-            href="#"
-            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          <button
+            // disabled={!data.search.documents.pageInfo.hasPreviousPage}
+            onClick={() =>
+              setPagination({
+                before: data.search.documents.pageInfo.startCursor || undefined,
+              })
+            }
+            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:cursor-not-allowed disabled:bg-gray-50"
           >
             Previous
-          </a>
-          <a
-            href="#"
-            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          </button>
+          <button
+            disabled={!data.search.documents.pageInfo.hasNextPage}
+            onClick={() =>
+              setPagination({
+                after: data.search.documents.pageInfo.endCursor || undefined,
+              })
+            }
+            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:cursor-not-allowed disabled:bg-gray-50"
           >
             Next
-          </a>
+          </button>
         </div>
-      </nav> */}
+      </nav>
     </div>
   );
 };
