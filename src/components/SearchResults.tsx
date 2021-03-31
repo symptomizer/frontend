@@ -3,16 +3,26 @@ import {
   SearchDocuments,
   SearchDocuments_search_documents_edges_node,
 } from "../pages/__generated__/SearchDocuments";
+import classNames from "classnames";
 
 const SearchResult = ({
   node,
   selected,
+  setSelectedDocument,
 }: {
   node: SearchDocuments_search_documents_edges_node;
   selected: boolean;
+  setSelectedDocument: (
+    document?: SearchDocuments_search_documents_edges_node
+  ) => void;
 }) => (
-  <li key={node.id} onClick={() => {}}>
-    <div className="block hover:bg-gray-50">
+  <li key={node.id} onClick={() => setSelectedDocument(node)}>
+    <div
+      className={classNames(
+        "block hover:bg-gray-50 border-l-4 border-white cursor-pointer",
+        selected ? "border-cyan-400" : "hover:border-gray-50"
+      )}
+    >
       <div className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-cyan-600 truncate">
@@ -49,7 +59,7 @@ const SearchResult = ({
                 clip-rule="evenodd"
               />
             </svg>
-            <p>NHS</p>
+            <p>{node.source.name}</p>
           </div>
         </div>
       </div>
@@ -62,8 +72,12 @@ export const SearchResults = ({
   error,
   data,
   selectedDocument,
+  setSelectedDocument,
 }: QueryResult<SearchDocuments> & {
   selectedDocument?: SearchDocuments_search_documents_edges_node;
+  setSelectedDocument: (
+    document?: SearchDocuments_search_documents_edges_node
+  ) => void;
 }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {JSON.stringify(error)}</div>;
@@ -75,9 +89,42 @@ export const SearchResults = ({
         {documentEdges.map(
           (edge) =>
             edge &&
-            edge.node && <SearchResult node={edge.node} selected={true} />
+            edge.node && (
+              <SearchResult
+                node={edge.node}
+                selected={edge.node.id === selectedDocument?.id}
+                setSelectedDocument={setSelectedDocument}
+              />
+            )
         )}
       </ul>
+      {/* <nav
+        className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+        aria-label="Pagination"
+      >
+        <div className="hidden sm:block">
+          <p className="text-sm text-gray-700">
+            Showing <span className="font-medium">1 </span>
+            to <span className="font-medium">10 </span>
+            of <span className="font-medium">20 </span>
+            results
+          </p>
+        </div>
+        <div className="flex-1 flex justify-between sm:justify-end">
+          <a
+            href="#"
+            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            Previous
+          </a>
+          <a
+            href="#"
+            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            Next
+          </a>
+        </div>
+      </nav> */}
     </div>
   );
 };

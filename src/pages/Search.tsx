@@ -20,7 +20,10 @@ import { Suggestions } from "../components/Suggestions";
 import { useDebounce } from "../utils/useDebounce";
 import { useProfile } from "../utils/useProfile";
 import { Question } from "./__generated__/Question";
-import { SearchDocuments } from "./__generated__/SearchDocuments";
+import {
+  SearchDocuments,
+  SearchDocuments_search_documents_edges_node,
+} from "./__generated__/SearchDocuments";
 import { SearchInfobox } from "./__generated__/SearchInfobox";
 
 const QUESTION = gql`
@@ -148,7 +151,10 @@ export const SearchPage = () => {
     variables: { query: debouncedSearchTerm },
   });
 
-  // const [selectedDocument, setSelectedDocument] = useState();
+  const [
+    selectedDocument,
+    setSelectedDocument,
+  ] = useState<SearchDocuments_search_documents_edges_node>();
 
   return (
     <div className="h-screen bg-gray-50 flex overflow-hidden">
@@ -411,7 +417,11 @@ export const SearchPage = () => {
                     </h1>
                   </div>
 
-                  <SearchResults {...searchDocuments} />
+                  <SearchResults
+                    {...searchDocuments}
+                    selectedDocument={selectedDocument}
+                    setSelectedDocument={setSelectedDocument}
+                  />
                 </>
               ) : (
                 <Suggestions setSearchTerm={setSearchTerm} />
