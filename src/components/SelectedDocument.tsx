@@ -1,12 +1,28 @@
+import { gql, useQuery } from "@apollo/client";
 import { ExternalLinkIcon } from "@heroicons/react/solid";
 import { SearchDocuments_search_documents_edges_node } from "../pages/__generated__/SearchDocuments";
 import { truncate } from "../utils/truncate";
+import { RelatedDocuments } from "./__generated__/RelatedDocuments";
+
+const RELATED_DOCUMENTS = gql`
+  query RelatedDocuments($id: ID!) {
+    relatedDocuments(id: $id) {
+      id
+      title
+      url
+    }
+  }
+`;
 
 export const SelectedDocument = ({
   selectedDocument: document,
 }: {
   selectedDocument?: SearchDocuments_search_documents_edges_node;
 }) => {
+  const relatedDocuments = useQuery<RelatedDocuments>(RELATED_DOCUMENTS, {
+    variables: { id: document?.id || "" },
+  });
+
   if (!document) return <></>;
 
   const description = truncate(

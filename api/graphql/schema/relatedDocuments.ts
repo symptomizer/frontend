@@ -25,7 +25,7 @@ query ($id: String!) {
         variables: { id },
       });
 
-      return data.moreDocs.documents.map(mapDocument);
+      return (data?.moreDocs?.documents || []).map(mapDocument);
     },
   },
 };
