@@ -36,7 +36,9 @@ export const QAResults = ({
           </div>
           <div className="absolute bottom-2 right-4">
             <p className="text-xs text-gray-500">
-              Answered by Symptomizer's BERT-based QA: &nbsp;
+              <span className="hidden md:inline-flex">
+                Answered by Symptomizer's BERT-based QA: &nbsp;
+              </span>
               {data.confidence >= 0.7 ? (
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                   {confidenceStr}
