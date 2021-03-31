@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { listify } from "./utils/general";
 
-const INFOBOX_API_URL = "http://ttds-proxy.gregbrimble.computer/info";
+const INFOBOX_API_URL = "http://api.symptomize.me/info";
 
 type InfoBoxResponse = {
   aliases: string[];

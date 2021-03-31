@@ -1,4 +1,4 @@
-const API_HOST = "https://ttds-proxy.gregbrimble.computer";
+const API_HOST = "http://api.symptomize.me";
 
 export const client = async (body: {
   query: string;
