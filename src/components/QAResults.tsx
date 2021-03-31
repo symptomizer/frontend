@@ -16,7 +16,7 @@ export const QAResults = ({
   data?: QAResultType;
   search?: string;
 }) => {
-  if (!search || error) return <></>;
+  if (!search || error || data?.answer === "empty") return <></>;
 
   let confidenceStr = "";
 

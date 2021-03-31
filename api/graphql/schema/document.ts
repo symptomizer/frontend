@@ -23,7 +23,6 @@ export const typeDefs = gql`
     url: URL!
     description: String
     provider: String
-    license: String
   }
 
   type JournalReference {
@@ -97,7 +96,6 @@ export const mapDocument = (document) => {
           url,
           description: nullable(image.description),
           provider: nullable(image.provider),
-          license: nullable(image.license),
         };
 
       return undefined;

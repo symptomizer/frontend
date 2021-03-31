@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo/white.svg";
 import { InfoBox } from "../components/InfoBox";
 import { QAResults } from "../components/QAResults";
+import { Suggestions } from "../components/Suggestions";
 import { useDebounce } from "../utils/useDebounce";
 import { useProfile } from "../utils/useProfile";
 import { Question } from "./__generated__/Question";
@@ -38,7 +39,50 @@ const SEARCH_DOCUMENTS = gql`
         edges {
           node {
             id
+            alternateDescription
+            alternateTitle
+            authors {
+              name
+              email
+            }
+            content
+            dateIndexed
+            datePublished
+            description
+            directURL
+            doi
+            fileName
+            images {
+              url
+              description
+              provider
+            }
+            isbn
+            issn
+            journalReference {
+              title
+              volume
+              issue
+              start
+              end
+            }
+            keywords
+            language
+            meshHeadings
+            meshQualifiers
+            pmcID
+            publisher
+            pubMedID
+            rights
+            source {
+              id
+              name
+              description
+              url
+            }
             title
+            type
+            url
           }
         }
       }
@@ -103,6 +147,8 @@ export const Search2Page = () => {
   const infobox = useQuery<SearchInfobox>(SEARCH_INFOBOX, {
     variables: { query: debouncedSearchTerm },
   });
+
+  const [selectedDocument, setSelectedDocument] = useState();
 
   return (
     <div className="h-screen bg-gray-50 flex overflow-hidden">
@@ -338,550 +384,94 @@ export const Search2Page = () => {
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="pt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex">
-                <h1 className="flex-1 text-2xl font-bold text-gray-900 mb-4">
-                  <em>Smart</em> Results
-                </h1>
-              </div>
+              {debouncedSearchTerm ? (
+                <>
+                  <div className="flex">
+                    <h1 className="flex-1 text-2xl font-bold text-gray-900 mb-4">
+                      <em>Smart</em> Results
+                    </h1>
+                  </div>
 
-              <QAResults
-                search={debouncedSearchTerm}
-                loading={question.loading}
-                data={question.data?.question}
-                error={question.error}
-              />
-              <InfoBox
-                search={debouncedSearchTerm}
-                loading={infobox.loading}
-                data={{
-                  aliases: infobox.data?.search?.infobox?.aliases,
-                  extext: infobox.data?.search?.infobox?.extext || undefined,
-                  images: infobox.data?.search?.infobox?.images,
-                  infobox: Object.fromEntries(
-                    Object.entries(
-                      infobox.data?.search?.infobox?.infobox || {}
-                    ).filter(([key, value]) => value)
-                  ),
-                }}
-                error={infobox.error}
-              />
+                  <QAResults
+                    search={debouncedSearchTerm}
+                    loading={question.loading}
+                    data={question.data?.question}
+                    error={question.error}
+                  />
+                  <InfoBox
+                    search={debouncedSearchTerm}
+                    loading={infobox.loading}
+                    data={{
+                      aliases: infobox.data?.search?.infobox?.aliases,
+                      extext:
+                        infobox.data?.search?.infobox?.extext || undefined,
+                      images: infobox.data?.search?.infobox?.images,
+                      infobox: Object.fromEntries(
+                        Object.entries(
+                          infobox.data?.search?.infobox?.infobox || {}
+                        ).filter(([key, value]) => value)
+                      ),
+                    }}
+                    error={infobox.error}
+                  />
 
-              <div className="flex mt-8">
-                <h1 className="flex-1 text-2xl font-bold text-gray-900">
-                  Documents
-                </h1>
-              </div>
+                  <div className="flex mt-8">
+                    <h1 className="flex-1 text-2xl font-bold text-gray-900">
+                      Documents
+                    </h1>
+                  </div>
 
-              {/* <!-- Gallery --> */}
-              <section className="mt-8 pb-16" aria-labelledby="gallery-heading">
-                <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                  {/* <!-- Current: "ring-2 ring-offset-2 ring-cyan-500", Default: "focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500" --> */}
-
-                  <li className="relative">
-                    <div className="ring-2 ring-offset-2 ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="object-cover pointer-events-none"
-                      />
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_4985.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_4985.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.9 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1614926857083-7be149266cda?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      />
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_5214.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_5214.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1614705827065-62c3dc488f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_3851.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_3851.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.8 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_4278.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_4278.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4.1 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_6842.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_6842.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_3284.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_3284.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.9 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_4841.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_4841.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.8 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1492724724894-7464c27d0ceb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_5644.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_5644.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1513682322455-ea8b2d81d418?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_4945.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_4945.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_2156.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_2156.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4.1 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1552461871-ce4f9fb3b438?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_6945.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_6945.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4.2 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1446292532430-3e76f6ab6444?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_1846.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_1846.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.6 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1508669232496-137b159c1cdb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_4769.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_4769.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.3 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1431512284068-4c4002298068?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_9513.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_9513.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1581320546160-0078de357255?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_8451.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_8451.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1541956628-68d338ae09d5?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_1298.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_1298.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4.1 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1505429155379-441cc7a574f7?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_6222.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_6222.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1582029133746-96031e5c8d00?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_7451.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_7451.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.8 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1575868053350-9fd87f68f984?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_9815.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_9815.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.9 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1588391051471-1a5283d5a625?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_1025.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_1025.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.9 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1575314146619-ec67b6213351?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_6010.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_6010.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.1 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1579874107960-e602329ef20a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_1004.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_1004.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      4.4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/flagged/photo-1551385229-2925ed4eb53d?ixlib=rb-1.2.1&ixqx=fFTBXALF4O&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_8499.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_8499.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.4 MB
-                    </p>
-                  </li>
-
-                  <li className="relative">
-                    <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1498575637358-821023f27355?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-                        alt=""
-                        className="group-hover:opacity-75 object-cover pointer-events-none"
-                      ></img>
-                      <button type="button" className="absolute inset-0">
-                        <span className="sr-only">
-                          View details for IMG_2154.HEIC
-                        </span>
-                      </button>
-                    </div>
-                    <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-                      IMG_2154.HEIC
-                    </p>
-                    <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-                      3.8 MB
-                    </p>
-                  </li>
-                </ul>
-              </section>
+                  <div className="mt-8 mb-16 bg-white shadow overflow-hidden sm:rounded-md">
+                    <ul className="divide-y divide-gray-200">
+                      <li>
+                        <div
+                          className="block hover:bg-gray-50"
+                          onClick={() => {}}
+                        >
+                          <div className="px-4 py-4 sm:px-6">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm font-medium text-cyan-600 truncate">
+                                Back End Developer
+                              </p>
+                              <div className="ml-2 flex-shrink-0 flex">
+                                <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                  Full-time
+                                </p>
+                              </div>
+                            </div>
+                            <div className="mt-2 sm:flex sm:justify-between">
+                              <div className="sm:flex">
+                                <p className="flex items-center text-sm text-gray-500">
+                                  Engineering
+                                </p>
+                              </div>
+                              <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                                {/* <!-- Heroicon name: solid/calendar --> */}
+                                <svg
+                                  className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd"
+                                  />
+                                </svg>
+                                <p>NHS</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <Suggestions setSearchTerm={setSearchTerm} />
+              )}
             </div>
           </main>
 
