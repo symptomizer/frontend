@@ -92,18 +92,25 @@ export const SelectedDocument = ({
         </div>
         <div>
           <details>
-            <summary className="font-medium text-gray-900 mb-2">
+            <summary className="font-medium text-gray-900 mb-2 cursor-pointer">
               Related Documents
             </summary>
 
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-500 italic">{document.content}</p>
-            </div>
+            <ul className="space-y-2 list-disc">
+              {relatedDocuments.loading ? "Loading..." : ""}
+              {relatedDocuments.data?.relatedDocuments.map((document) => (
+                <li className="text-sm text-gray-700 underline">
+                  <a href={document.url} target="_blank" rel="noreferrer">
+                    {document.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </details>
         </div>
         <div>
           <details>
-            <summary className="font-medium text-gray-900 mb-2">
+            <summary className="font-medium text-gray-900 mb-2 cursor-pointer">
               Document Content
             </summary>
 
