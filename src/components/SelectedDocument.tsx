@@ -14,6 +14,45 @@ const RELATED_DOCUMENTS = gql`
   }
 `;
 
+const Authors = ({
+  authors,
+}: {
+  authors: SearchDocuments_search_documents_edges_node["authors"];
+}) =>
+  authors.length > 0 ? (
+    <div className="py-3 flex justify-between text-sm font-medium">
+      <dt className="text-gray-500">Authors</dt>
+      <dd className="text-gray-900">
+        <ul>
+          {authors.map((author) => (
+            <li key={author.email}>
+              {author.email ? (
+                <a href={`mailto:${author.email}`} className="underline">
+                  {author.name}
+                </a>
+              ) : (
+                author.name
+              )}
+            </li>
+          ))}
+        </ul>
+      </dd>
+    </div>
+  ) : (
+    <></>
+  );
+
+const DOI = ({ doi }: { doi?: string }) => (
+  <div className="py-3 flex justify-between text-sm font-medium">
+    <dt className="text-gray-500">DOI</dt>
+    <dd className="text-gray-900 underline">
+      <a href={`https://doi.org/${doi}`} target="_blank" rel="noreferrer">
+        {doi}
+      </a>
+    </dd>
+  </div>
+);
+
 export const SelectedDocument = ({
   selectedDocument: document,
 }: {
@@ -56,28 +95,26 @@ export const SelectedDocument = ({
           </div>
         </div>
         <div>
-          <h3 className="font-medium text-gray-900">Information</h3>
+          <h3 className="font-medium text-gray-900">Metadata</h3>
           <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+            <Authors authors={document.authors} />
             <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-gray-500">Uploaded by</dt>
-              <dd className="text-gray-900">Marie Culver</dd>
+              <dt className="text-gray-500">Date Indexed</dt>
+              <dd className="text-gray-900">
+                {new Date(document.dateIndexed).toDateString()}
+              </dd>
             </div>
-            <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-gray-500">Created</dt>
-              <dd className="text-gray-900">June 8, 2020</dd>
-            </div>
-            <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-gray-500">Last modified</dt>
-              <dd className="text-gray-900">June 8, 2020</dd>
-            </div>
-            <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-gray-500">Dimensions</dt>
-              <dd className="text-gray-900">4032 x 3024</dd>
-            </div>
-            <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-gray-500">Resolution</dt>
-              <dd className="text-gray-900">72 x 72</dd>
-            </div>
+            {document.datePublished ? (
+              <div className="py-3 flex justify-between text-sm font-medium">
+                <dt className="text-gray-500">Date Published</dt>
+                <dd className="text-gray-900">
+                  {new Date(document.datePublished).toDateString()}
+                </dd>
+              </div>
+            ) : (
+              <></>
+            )}
+            <DOI doi={document.doi} />
           </dl>
         </div>
         <div className="flex">
@@ -119,73 +156,6 @@ export const SelectedDocument = ({
             </div>
           </details>
         </div>
-        {/* <div>
-          <h3 className="font-medium text-gray-900">Shared with</h3>
-          <ul className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
-            <li className="py-3 flex justify-between items-center">
-              <div className="flex items-center">
-                <img
-                  src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=1024&h=1024&q=80"
-                  alt=""
-                  className="w-8 h-8 rounded-full"
-                />
-                <p className="ml-4 text-sm font-medium text-gray-900">
-                  Aimee Douglas
-                </p>
-              </div>
-              <button
-                type="button"
-                className="ml-6 bg-white rounded-md text-sm font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-              >
-                Remove<span className="sr-only"> Aimee Douglas</span>
-              </button>
-            </li>
-            <li className="py-3 flex justify-between items-center">
-              <div className="flex items-center">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=oilqXxSqey&ixqx=fFTBXALF4O&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                  className="w-8 h-8 rounded-full"
-                />
-                <p className="ml-4 text-sm font-medium text-gray-900">
-                  Andrea McMillan
-                </p>
-              </div>
-              <button
-                type="button"
-                className="ml-6 bg-white rounded-md text-sm font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-              >
-                Remove<span className="sr-only"> Andrea McMillan</span>
-              </button>
-            </li>
-            <li className="py-2 flex justify-between items-center">
-              <button
-                type="button"
-                className="group -ml-1 bg-white p-1 rounded-md flex items-center focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              >
-                <span className="w-8 h-8 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400">
-                  <!-- Heroicon name: solid/plus -->
-                  <svg
-                    className="h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-                <span className="ml-4 text-sm font-medium text-cyan-600 group-hover:text-cyan-500">
-                  Share
-                </span>
-              </button>
-            </li>
-          </ul>
-        </div> */}
       </div>
     </aside>
   );

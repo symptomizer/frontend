@@ -162,7 +162,7 @@ export const mapDocument = (document) => {
     case "who_iris": {
       document.images = document.images.map((image) => ({
         ...image,
-        url: "https://app.who.int" + image.url,
+        url: "https://apps.who.int" + image.url,
       }));
       break;
     }
