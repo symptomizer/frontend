@@ -12,10 +12,7 @@ export default function graphql({ Router, ServerContext }: FABRuntime) {
 
   Router.on("/graphql", async ({ request }) => {
     const response = await graphQLHandler(request);
-    response.headers.set(
-      "Access-Control-Allow-Origin",
-      "https://symptomize.me"
-    );
+    response.headers.set("Access-Control-Allow-Origin", "*");
     return response;
   });
   Router.on(
