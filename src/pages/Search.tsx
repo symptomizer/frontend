@@ -560,7 +560,10 @@ export const SearchPage: FC = () => {
                   {searchTerm.length > 0 && (
                     <QAResults
                       loading={loadingQA}
-                      data={{ answer: "osteoperosis", confidence: 0.9888 }}
+                      data={{
+                        answer: "osteoperosis",
+                        confidence: Math.random(),
+                      }}
                     />
                   )}
                   {searchTerm.length > 0 && (

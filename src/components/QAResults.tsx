@@ -16,11 +16,9 @@ export const QAResults = ({
 }) => {
   let confidenceStr = "";
 
-  const showQA = !loading && data !== undefined && data.confidence > 0.7;
+  const showQA = !loading && data !== undefined;
   if (showQA && data !== undefined) {
-    confidenceStr = `Answered by Symptomizer's BERT-based QA - Confidence: ${Math.floor(
-      data.confidence * 100
-    )}%`;
+    confidenceStr = `Confidence: ${Math.floor(data.confidence * 100)}%`;
     return (
       <Transition
         appear={true}
@@ -37,7 +35,22 @@ export const QAResults = ({
             <p className="text-3xl font-light text-gray-900">{data.answer}</p>
           </div>
           <div className="absolute bottom-2 right-4">
-            <p className="text-xs text-gray-500">{confidenceStr}</p>
+            <p className="text-xs text-gray-500">
+              Answered by Symptomizer's BERT-based QA: &nbsp;
+              {data.confidence >= 0.7 ? (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  {confidenceStr}
+                </span>
+              ) : data.confidence >= 0.4 ? (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                  {confidenceStr}
+                </span>
+              ) : (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  {confidenceStr}
+                </span>
+              )}
+            </p>
           </div>
           <div className="absolute bottom-2 left-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-800 to-cyan-500 lowercase tracking-wide text-xs font-normal">
