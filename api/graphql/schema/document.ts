@@ -93,7 +93,7 @@ export const mapDocument = (document) => {
   document.doi = nullable(document.doi);
   document.fileName = nullable(document.fileName);
   document.images = removeNulls(
-    listify(document.imageURLs).map((image) => {
+    listify(document.imageURLS).map((image) => {
       const url = nullable(image.url);
       if (url)
         return {
@@ -160,7 +160,10 @@ export const mapDocument = (document) => {
       break;
     }
     case "who_iris": {
-      // The URL is correctly formatted. No action needed.
+      document.images = document.images.map((image) => ({
+        ...image,
+        url: "https://app.who.int" + image.url,
+      }));
     }
   }
 
