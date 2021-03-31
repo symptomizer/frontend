@@ -1,6 +1,7 @@
 import { connectionDefinitions } from "graphql-relay-tools";
 import gql from "graphql-tag";
 import { resolvers as documentSourceResolvers } from "./documentSource";
+import { document } from "./utils/fragments";
 import {
   prepare,
   nullable,
@@ -84,7 +85,11 @@ export const mapDocument = (document) => {
     email: nullable(author.email),
   }));
   document.content = removeNulls(listify(document.content));
+  document.dateIndexed = new Date(document.dateIndexed).toISOString();
   document.datePublished = nullable(document.datePublished);
+  document.datePublished = document.datePublished
+    ? new Date(document.datePublished).toISOString()
+    : undefined;
   document.description = prepare(document.description);
   document.doi = nullable(document.doi);
   document.fileName = nullable(document.fileName);

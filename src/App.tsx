@@ -1,5 +1,4 @@
 import { SearchPage } from "./pages/Search";
-import { Search2Page } from "./pages/Search2";
 import { Home } from "./pages/Home";
 // import { Login } from "./pages/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -20,9 +19,6 @@ function App() {
           </Route> */}
           <Route path="/search" exact>
             <SearchPage />
-          </Route>
-          <Route path="/search2" exact>
-            <Search2Page />
           </Route>
           <Route path="/" exact>
             <Home />
