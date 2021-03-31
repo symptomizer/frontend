@@ -39,7 +39,7 @@ const SearchResult = ({
             <p className="flex items-center text-sm text-gray-500">
               {node.content
                 .reduce((a, b) => a + b, "")
-                .slice(0, 150)
+                .slice(0, 140)
                 .trim()}
               ...
             </p>

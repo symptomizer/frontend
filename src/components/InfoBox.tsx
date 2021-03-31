@@ -84,7 +84,7 @@ export const InfoBox = ({
     data && data.infobox
       ? sortInfoBoxObjectEntries(
           Object.entries(data.infobox).filter(
-            ([key, value]) => key !== "__typename"
+            ([key, value]) => key !== "__typename" && value
           )
         )
       : [];
