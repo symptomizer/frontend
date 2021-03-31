@@ -25,7 +25,7 @@ export const resolvers = {
       return {
         documents: async (args) => {
           args.first = args.first || 20;
-          const limit = args.after ? args.first : 100;
+          const limit = 40;
 
           const { data } = await client({
             query: `

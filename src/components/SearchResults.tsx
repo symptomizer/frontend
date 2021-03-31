@@ -6,6 +6,7 @@ import {
 import classNames from "classnames";
 import { BadgeCheckIcon } from "@heroicons/react/outline";
 import { truncate } from "../utils/truncate";
+import { Transition } from "@headlessui/react";
 
 const SearchResult = ({
   node,
@@ -76,8 +77,46 @@ export const SearchResults = ({
     document?: SearchDocuments_search_documents_edges_node
   ) => void;
 }) => {
-  if (loading) return <div>Loading...</div>;
-  if (error || !data) return <div>Error: {JSON.stringify(error)}</div>;
+  if (loading)
+    return (
+      <Transition
+        appear={true}
+        show={loading}
+        enter="transition-opacity duration-500"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-500"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="mt-4 border border-gray-200 shadow rounded-md mb-4 p-4 w-full mx-auto">
+          <div className="animate-pulse flex space-x-4">
+            <div className="flex-1 space-y-2 py-1 ">
+              <div className="space-y-2 border-b-1">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+              <div className="space-y-2 border-b-1">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    );
+
+  if (error || !data)
+    return (
+      <div>
+        A critical (and never seen before) error has occurred! Please let us
+        know and we will quickly try to fix it. Thank you!
+      </div>
+    );
 
   const documentEdges = data.search.documents.edges || [];
   return (
@@ -95,18 +134,10 @@ export const SearchResults = ({
             )
         )}
       </ul>
-      <nav
+      {/* <nav
         className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
         aria-label="Pagination"
       >
-        <div className="hidden sm:block">
-          <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">1 </span>
-            to <span className="font-medium">10 </span>
-            of <span className="font-medium">20 </span>
-            results
-          </p>
-        </div>
         <div className="flex-1 flex justify-between sm:justify-end">
           <button
             // disabled={!data.search.documents.pageInfo.hasPreviousPage}
@@ -120,7 +151,7 @@ export const SearchResults = ({
             Previous
           </button>
           <button
-            disabled={!data.search.documents.pageInfo.hasNextPage}
+            // disabled={!data.search.documents.pageInfo.hasNextPage}
             onClick={() =>
               setPagination({
                 after: data.search.documents.pageInfo.endCursor || undefined,
@@ -131,7 +162,7 @@ export const SearchResults = ({
             Next
           </button>
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 };

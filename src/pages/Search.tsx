@@ -12,7 +12,7 @@ import { SearchIcon as SSearchIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/logo/white.svg";
+import Logo from "../assets/logo/white.png";
 import { InfoBox } from "../components/InfoBox";
 import { QAResults } from "../components/QAResults";
 import { SearchResults } from "../components/SearchResults";
@@ -39,7 +39,7 @@ const QUESTION = gql`
 const SEARCH_DOCUMENTS = gql`
   query SearchDocuments($query: String!, $after: String, $before: String) {
     search(query: $query) {
-      documents(first: 10, after: $after, before: $before) {
+      documents(first: 40, after: $after, before: $before) {
         pageInfo {
           endCursor
           hasNextPage
@@ -176,7 +176,7 @@ export const SearchPage = () => {
         <div className="w-full py-6 flex flex-col items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/">
-              <img className="h-8 w-auto" src={Logo} alt="Workflow" />
+              <img className="h-10 w-auto" src={Logo} alt="Workflow" />
             </Link>
           </div>
           <div className="flex-1 mt-6 w-full px-2 space-y-1">
@@ -406,12 +406,6 @@ export const SearchPage = () => {
             <div className="pt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {debouncedSearchTerm ? (
                 <>
-                  <div className="flex">
-                    <h1 className="flex-1 text-2xl font-bold text-gray-900 mb-4">
-                      <em>Smart</em> Results
-                    </h1>
-                  </div>
-
                   <QAResults
                     search={debouncedSearchTerm}
                     loading={question.loading}
