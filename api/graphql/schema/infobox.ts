@@ -77,7 +77,10 @@ export const infobox = async (query: string): Promise<InfoBoxResponse> => {
   const response = await fetch(url.toString(), {
     headers: { "X-Port": "8889" },
   });
-  const data: InfoBoxResponse = (await response.json()).data;
+  const json = await response.json();
+  if (json.status !== 200) return undefined;
+
+  const data: InfoBoxResponse = json.data;
   data.aliases = listify(data.aliases);
   data.images = listify(data.images);
   data.infobox = data.infobox || {};
