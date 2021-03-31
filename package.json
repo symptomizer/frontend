@@ -12,6 +12,8 @@
     "@glenstack/cf-workers-graphql": "1.0.4",
     "@graphql-tools/schema": "6.0.18",
     "@headlessui/react": "0.2.0",
+    "@heroicons/react": "1.0.0",
+    "@tailwindcss/aspect-ratio": "0.2.0",
     "classnames": "2.2.6",
     "cookie": "0.4.1",
     "firebase": "^8.2.5",
@@ -42,7 +44,7 @@
     "pretest": "npm run validate",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "graphql:update-schema": "apollo client:download-schema --endpoint='http://localhost:3000/graphql' ./schema.graphql",
+    "graphql:update-schema": "apollo client:download-schema --endpoint='https://symptomize.me/graphql' ./schema.graphql",
     "graphql:update-types": "apollo client:codegen --target=typescript --localSchemaFile='./schema.graphql' --includes='./src/**/*'",
     "graphql:watch-types": "npm run graphql:update-types -- --watch"
   },

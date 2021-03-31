@@ -19,14 +19,11 @@ const SEARCH = gql`
         edges {
           node {
             id
-            name
+            title
             description
             url
-            externalSource {
+            source {
               id
-              name
-              description
-              url
             }
           }
         }
@@ -38,7 +35,6 @@ const SEARCH = gql`
 export const SearchPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [newSearchCounts, setNewSearchCounts] = useState(0);
   const [loadingQA, setLoadingQA] = useState(true);
   const [infoBoxData, setInfoBoxData] = useState<InfoBoxDataType>({});
   // Just here to demo how the QA would take longer to load. To remove when it's actually hooked up I guess.
@@ -48,23 +44,6 @@ export const SearchPage: FC = () => {
       setLoadingQA(false);
     }, 3000);
   }, [searchTerm]);
-
-  const fireSearchNumUpdates = async () => {
-    const response = await fetch(
-      "https://europe-west2-symptomizer.cloudfunctions.net/increment-search",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ count: newSearchCounts }),
-      }
-    );
-
-    console.log(response.text); // parses JSON response into native JavaScript objects
-
-    setNewSearchCounts(0);
-  };
 
   // Temporary for me to fetch from infobox. Should be replaced
   const getInfoBoxData = async (title: string) => {
@@ -232,12 +211,10 @@ export const SearchPage: FC = () => {
                       value={searchTerm}
                       onChange={(event) => {
                         setSearchTerm(event.target.value);
-                        setNewSearchCounts(newSearchCounts + 1);
                         setInfoBoxData({});
                       }}
                       onBlur={() => {
                         getInfoBoxData(searchTerm);
-                        fireSearchNumUpdates();
                       }}
                     />
                   </div>
@@ -367,12 +344,10 @@ export const SearchPage: FC = () => {
                         value={searchTerm}
                         onChange={(event) => {
                           setSearchTerm(event.target.value);
-                          setNewSearchCounts(newSearchCounts + 1);
                           setInfoBoxData({});
                         }}
                         onBlur={() => {
                           getInfoBoxData(searchTerm);
-                          fireSearchNumUpdates();
                         }}
                       />
                     </div>
