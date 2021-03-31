@@ -1,4 +1,6 @@
 import gql from "graphql-tag";
+import { listify } from "./utils/general";
+
 const INFOBOX_API_URL = "http://35.214.36.96:8889/info";
 
 type InfoBoxResponse = {
@@ -74,8 +76,8 @@ export const infobox = async (query: string): Promise<InfoBoxResponse> => {
   url.searchParams.set("search", query);
   const response = await fetch(url.toString());
   const data: InfoBoxResponse = (await response.json()).data;
-  data.aliases = data.aliases || [];
-  data.images = data.images || [];
+  data.aliases = listify(data.aliases);
+  data.images = listify(data.images);
   data.infobox = data.infobox || {};
   return data;
 };

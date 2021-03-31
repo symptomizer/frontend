@@ -14,7 +14,7 @@ import { typeDefs as documentTypeDefs } from "./document";
 import {
   typeDefs as searchResultTypeDefs,
   resolvers as searchResultResolvers,
-} from "./searchResult";
+} from "./search";
 import { typeDefs as infoboxTypeDefs } from "./infobox";
 import { Context } from "../context";
 
