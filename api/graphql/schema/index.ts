@@ -16,6 +16,14 @@ import {
   resolvers as searchResultResolvers,
 } from "./search";
 import { typeDefs as infoboxTypeDefs } from "./infobox";
+import {
+  typeDefs as questionTypeDefs,
+  resolvers as questionResolvers,
+} from "./question";
+import {
+  typeDefs as relatedDocumentsTypeDefs,
+  resolvers as relatedDocumentsResolvers,
+} from "./relatedDocuments";
 import { Context } from "../context";
 
 const typeDefs = gql`
@@ -42,6 +50,8 @@ export const schema = makeExecutableSchema({
     documentTypeDefs,
     searchResultTypeDefs,
     infoboxTypeDefs,
+    questionTypeDefs,
+    relatedDocumentsTypeDefs,
   ],
   resolvers: [
     resolvers,
@@ -49,5 +59,7 @@ export const schema = makeExecutableSchema({
     authResolvers,
     documentSourceResolvers,
     searchResultResolvers,
+    questionResolvers,
+    relatedDocumentsResolvers,
   ],
 });

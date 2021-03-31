@@ -10,7 +10,14 @@ export default function graphql({ Router, ServerContext }: FABRuntime) {
     makeContextValue: makeContextValueMaker(ServerContext),
   });
 
-  Router.on("/graphql", ({ request }) => graphQLHandler(request));
+  Router.on("/graphql", async ({ request }) => {
+    const response = await graphQLHandler(request);
+    response.headers.set(
+      "Access-Control-Allow-Origin",
+      "https://symptomize.me"
+    );
+    return response;
+  });
   Router.on(
     "/voyager",
     async () =>

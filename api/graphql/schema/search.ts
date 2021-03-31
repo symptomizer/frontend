@@ -1,8 +1,10 @@
+import { client } from "./utils/searchClient";
 import { connectionArgs, connectionFromArray } from "graphql-relay-tools";
 import gql from "graphql-tag";
 import { mapDocument } from "./document";
 import { infobox } from "./infobox";
 import { incrementSearchCounter } from "./utils/incrementSearchCounter";
+import { document } from "./utils/fragments";
 
 export const typeDefs = gql`
   type SearchResult {
@@ -14,20 +16,6 @@ export const typeDefs = gql`
     search(query: String!): SearchResult!
   }
 `;
-
-const API_HOST = "http://35.214.36.96:8000";
-
-export const client = async (body: {
-  query: string;
-  variables?: Record<string, any>;
-}) => {
-  const response = await fetch(`${API_HOST}/graphql`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  return await response.json();
-};
 
 export const resolvers = {
   Query: {
@@ -41,45 +29,13 @@ export const resolvers = {
 
           const { data } = await client({
             query: `
-    query ($query: String!, $language: String!, $limit: Int) {
-      search(q: $query, language: $language, limit: $limit) { # TODO: type
-        documents {
-          id
-          alternateDescription
-          alternateTitle
-          authors {
-            name
-            email
-          }
-          content
-          dateIndexed
-          datePublished
-          description
-          directURL
-          doi
-          fileName
-          isbn
-          issn
-          keywords
-          language
-          meshHeadings
-          meshQualifiers
-          rights
-          source {
-            id
-          }
-          title
-          type_
-          url
-
-          # imageURLs: [Image!]!
-          # pubMedID: PubMedID
-          # pmcID: PMCID
-          # journalReference: JournalReference
-          # publisher: String
-        }
-      }
-    }`,
+query ($query: String!, $language: String!, $limit: Int) {
+  search(q: $query, language: $language, limit: $limit) { # TODO: type
+    documents {
+      ${document}
+    }
+  }
+}`,
             variables: { query, language: "en", limit },
           });
           const documents = data.search.documents.map(mapDocument);
