@@ -23,6 +23,6 @@ export const typeDefs = [
 export const resolvers = [
   { DateTime: DateTimeResolver },
   { EmailAddress: EmailAddressResolver },
-  { ISBN: ISBNResolver },
+  // { ISBN: ISBNResolver },
   { URL: URLResolver },
 ];

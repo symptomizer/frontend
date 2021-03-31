@@ -401,17 +401,7 @@ export const SearchPage = () => {
                   <InfoBox
                     search={debouncedSearchTerm}
                     loading={infobox.loading}
-                    data={{
-                      aliases: infobox.data?.search?.infobox?.aliases,
-                      extext:
-                        infobox.data?.search?.infobox?.extext || undefined,
-                      images: infobox.data?.search?.infobox?.images,
-                      infobox: Object.fromEntries(
-                        Object.entries(
-                          infobox.data?.search?.infobox?.infobox || {}
-                        ).filter(([key, value]) => value)
-                      ),
-                    }}
+                    data={infobox.data?.search.infobox}
                     error={infobox.error}
                   />
 
