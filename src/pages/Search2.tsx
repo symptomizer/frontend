@@ -6,12 +6,11 @@ import {
   MapIcon,
   SupportIcon,
   MenuAlt2Icon,
-  HomeIcon,
   XIcon,
 } from "@heroicons/react/outline";
 import { SearchIcon as SSearchIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo/white.svg";
 import { InfoBox } from "../components/InfoBox";
@@ -140,15 +139,15 @@ export const Search2Page = () => {
     variables: { query: debouncedSearchTerm },
   });
 
-  const searchDocuments = useQuery<SearchDocuments>(SEARCH_DOCUMENTS, {
-    variables: { query: debouncedSearchTerm },
-  });
+  // const searchDocuments = useQuery<SearchDocuments>(SEARCH_DOCUMENTS, {
+  //   variables: { query: debouncedSearchTerm },
+  // });
 
   const infobox = useQuery<SearchInfobox>(SEARCH_INFOBOX, {
     variables: { query: debouncedSearchTerm },
   });
 
-  const [selectedDocument, setSelectedDocument] = useState();
+  // const [selectedDocument, setSelectedDocument] = useState();
 
   return (
     <div className="h-screen bg-gray-50 flex overflow-hidden">
