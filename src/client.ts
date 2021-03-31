@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 export const client = new ApolloClient({
-  uri: "/graphql",
+  uri: "https://symptomize.me/graphql",
   cache: new InMemoryCache(),
 });

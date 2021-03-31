@@ -7,14 +7,18 @@
 // GraphQL query operation: Search
 // ====================================================
 
+export interface Search_search_documents_edges_node_source {
+  __typename: "DocumentSource";
+  id: string;
+}
+
 export interface Search_search_documents_edges_node {
   __typename: "Document";
   id: string;
   title: string;
-  content: string[];
   description: string | null;
   url: any;
-  source: string;
+  source: Search_search_documents_edges_node_source;
 }
 
 export interface Search_search_documents_edges {

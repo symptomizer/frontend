@@ -45,6 +45,7 @@ const sortStringArrayByLength = (array: string[]) => {
 const stripHTMLTags = (str: string) => {
   return str.replace(/(<([^>]+)>)/gi, " ");
 };
+
 export type InfoBoxDataType = {
   aliases?: string[];
   extext?: string;
@@ -59,10 +60,12 @@ export const InfoBox = ({
   search,
 }: {
   loading: boolean;
-  error?: string;
+  error?: any;
   data?: InfoBoxDataType;
   search: string;
 }) => {
+  if (!search || error) return <></>;
+
   const showInfoBox = !loading && data !== undefined;
   if (showInfoBox && data !== undefined) {
     const title =
@@ -77,7 +80,11 @@ export const InfoBox = ({
 
     const infoBoxEntries =
       data && data.infobox
-        ? sortInfoBoxObjectEntries(Object.entries(data.infobox))
+        ? sortInfoBoxObjectEntries(
+            Object.entries(data.infobox).filter(
+              ([key, value]) => key !== "__typename"
+            )
+          )
         : [];
 
     return (
@@ -139,5 +146,5 @@ export const InfoBox = ({
       </Transition>
     );
   }
-  return <></>;
+  return <div>Loading...</div>;
 };

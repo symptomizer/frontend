@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { LogoCloud } from "./LogoCloud";
 import HeroSC from "../../assets/heroAssets/hero-sc.jpg";
-import CyanLogo600 from "../../assets/logo/cyan-600-inverted.png";
+import CyanLogo600 from "../../assets/logo/cyan-600.svg";
 
 export const Hero: FC = () => (
   <div className="pb-8 sm:pb-12 lg:pb-12">

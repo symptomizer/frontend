@@ -10,7 +10,7 @@
 export interface Profile_me {
   __typename: "User";
   id: string;
-  imageURL: string;
+  imageURL: any;
 }
 
 export interface Profile {

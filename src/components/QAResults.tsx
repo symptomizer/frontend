@@ -9,11 +9,15 @@ export const QAResults = ({
   loading,
   error,
   data,
+  search,
 }: {
   loading: boolean;
-  error?: object;
+  error?: any;
   data?: QAResultType;
+  search?: string;
 }) => {
+  if (!search || error) return <></>;
+
   let confidenceStr = "";
 
   const showQA = !loading && data !== undefined;
@@ -61,5 +65,6 @@ export const QAResults = ({
       </Transition>
     );
   }
-  return <></>;
+
+  return <div>Loading...</div>;
 };

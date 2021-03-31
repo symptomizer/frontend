@@ -33,18 +33,178 @@ directive @connection(
 ) on FIELD
 
 type Query {
-  search(q: String!): SearchResult!
+  hello: String!
+  version: String!
+  node(id: ID!): Node
+  me: User
+  documentSource(id: ID!): DocumentSource
+  documentSources: [DocumentSource!]!
+  search(query: String!): SearchResult!
+  question(query: String!): QuestionResponse!
+  relatedDocuments(id: ID!): [Document!]!
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""
+A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
+"""
+scalar EmailAddress
+
+"""
+A field whose value is a ISBN-10 or ISBN-13 number: https://en.wikipedia.org/wiki/International_Standard_Book_Number.
+"""
+scalar ISBN
+
+scalar ISSN
+
+scalar DOI
+
+scalar PubMedID
+
+scalar PMCID
+
+"""
+A field whose value conforms to the standard URL format as specified in RFC3986: https://www.ietf.org/rfc/rfc3986.txt.
+"""
+scalar URL
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type User {
+  id: ID!
+  imageURL: URL!
+}
+
+type DocumentSource implements Node {
+  id: ID!
+  name: String!
+  description: String!
+  url: URL!
+}
+
+type Author {
+  name: String!
+  email: EmailAddress
+}
+
+type Image {
+  url: URL!
+  description: String
+  provider: String
+  license: String
+}
+
+type JournalReference {
+  title: String
+  volume: String
+  issue: String
+  start: String
+  end: String
+}
+
+enum DocumentType {
+  GUIDANCE
+  OVERVIEW
+  PUBLICATION
+  BOOK
+  ADMINISTRATION
+  OTHER
+  UNKNOWN
+}
+
+type Document implements Node {
+  id: ID!
+  alternateDescription: String
+  alternateTitle: [String!]!
+  authors: [Author!]!
+  content: [String!]!
+  dateIndexed: DateTime!
+  datePublished: DateTime
+  description: String
+  directURL: URL!
+  doi: DOI
+  fileName: String
+  images: [Image!]!
+  isbn: ISBN
+  issn: ISSN
+  journalReference: JournalReference
+  keywords: [String!]!
+  language: String!
+  meshHeadings: [String!]!
+  meshQualifiers: [String!]!
+  pmcID: PMCID
+  publisher: String
+  pubMedID: PubMedID
+  rights: String
+  source: DocumentSource!
+  title: String!
+  type: DocumentType!
+  url: URL!
+}
+
+type DocumentEdge {
+  cursor: String!
+  node: Document
+}
+
+type DocumentConnection {
+  edges: [DocumentEdge]
+  pageInfo: PageInfo!
 }
 
 type SearchResult {
-  documents: [Document!]!
+  documents(first: Int, after: String, last: Int, before: String): DocumentConnection!
+  infobox: Infobox
 }
 
-type Document {
-  id: String!
-  title: String!
-  description: String!
-  content: [String!]!
-  url: String!
-  source: String!
+type InfoboxDetails {
+  cause: String
+  complications: String
+  deaths: String
+  diagnosis: String
+  duration: String
+  frequency: String
+  name: String
+  prevention: String
+  symptoms: String
+  treatment: String
+  onset: String
+  bioavailability: String
+  boiling_point: String
+  density: String
+  excretion: String
+  melting_high: String
+  melting_point: String
+  metabolism: String
+  metabolites: String
+  pregnancy_category: String
+  protein_bound: String
+  routes_of_administration: String
+  solubility: String
+  tradename: String
+}
+
+type Infobox {
+  aliases: [String!]!
+  extext: String
+  images: [URL!]!
+  infobox: InfoboxDetails!
+}
+
+type QuestionResponse {
+  answer: String!
+  confidence: Float!
 }
