@@ -1,7 +1,6 @@
 import { connectionDefinitions } from "graphql-relay-tools";
 import gql from "graphql-tag";
 import { resolvers as documentSourceResolvers } from "./documentSource";
-
 import {
   prepare,
   nullable,
