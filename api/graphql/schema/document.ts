@@ -106,11 +106,12 @@ export const mapDocument = (document) => {
   document.isbn = nullable(document.isbn);
   document.issn = nullable(document.issn);
   if (
-    (document.journalReference && document.journalReference.title) ||
-    document.journalReference.volume ||
-    document.journalReference.issue ||
-    document.journalReference.start ||
-    document.journalReference.end
+    document.journalReference &&
+    (document.journalReference.title ||
+      document.journalReference.volume ||
+      document.journalReference.issue ||
+      document.journalReference.start ||
+      document.journalReference.end)
   ) {
     document.journalReference = {
       title: nullable(document.journalReference.title),

@@ -24,6 +24,7 @@ query ($query: String!) {
     confidence
   }
 }`,
+        variables: { query },
       });
 
       return {
