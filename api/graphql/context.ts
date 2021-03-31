@@ -13,7 +13,11 @@ export const makeContextValueMaker = ({
 }: ServerContext): ContextValueMaker => async (
   request: Request
 ): Promise<Context> => {
-  const jwt = cookie.parse(request.headers.get("Cookie"))["jwt"];
-  const jwtPayload = await verifyJWT(jwt);
-  return { version: bundle_id, jwt: jwtPayload || undefined };
+  let jwtPayload = undefined;
+  try {
+    const jwt = cookie.parse(request.headers.get("Cookie"))["jwt"];
+    jwtPayload = await verifyJWT(jwt);
+  } catch {}
+
+  return { version: bundle_id, jwt: jwtPayload };
 };

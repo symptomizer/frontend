@@ -6,13 +6,16 @@ import {
 } from "./scalars";
 import { typeDefs as relayTypeDefs } from "./relay";
 import { typeDefs as authTypeDefs, resolvers as authResolvers } from "./auth";
-import { typeDefs as externalSourceTypeDefs } from "./types/externalSource";
-import { typeDefs as documentTypeDefs } from "./types/document";
+import {
+  typeDefs as documentSourceTypeDefs,
+  resolvers as documentSourceResolvers,
+} from "./documentSource";
+import { typeDefs as documentTypeDefs } from "./document";
 import {
   typeDefs as searchResultTypeDefs,
   resolvers as searchResultResolvers,
-} from "./types/searchResult";
-import { typeDefs as suggestStringTypeDefs } from "./types/suggestString";
+} from "./searchResult";
+import { typeDefs as infoboxTypeDefs } from "./infobox";
 import { Context } from "../context";
 
 const typeDefs = gql`
@@ -20,19 +23,12 @@ const typeDefs = gql`
     hello: String!
     version: String!
   }
-
-  type Mutation {
-    hello: String!
-  }
 `;
 
 const resolvers = {
   Query: {
     hello: () => "Hello, world!",
     version: (parent, args, context: Context) => context.version,
-  },
-  Mutation: {
-    hello: () => "Hello, world!",
   },
 };
 
@@ -42,15 +38,16 @@ export const schema = makeExecutableSchema({
     ...scalarTypeDefs,
     ...relayTypeDefs,
     authTypeDefs,
-    externalSourceTypeDefs,
+    documentSourceTypeDefs,
     documentTypeDefs,
     searchResultTypeDefs,
-    suggestStringTypeDefs,
+    infoboxTypeDefs,
   ],
   resolvers: [
     resolvers,
     ...scalarResolvers,
     authResolvers,
+    documentSourceResolvers,
     searchResultResolvers,
   ],
 });
