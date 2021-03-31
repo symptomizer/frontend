@@ -13,11 +13,15 @@ export default function graphql({ Router, ServerContext }: FABRuntime) {
   Router.on("/graphql", async ({ request }) => {
     if (request.method === "OPTIONS")
       return new Response(null, {
-        headers: { "Access-Control-Allow-Origin": "*" },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
       });
 
     const response = await graphQLHandler(request);
     response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
     return response;
   });
   Router.on(
