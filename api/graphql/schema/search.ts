@@ -38,6 +38,7 @@ query ($query: String!, $language: String!, $limit: Int) {
 }`,
             variables: { query, language: "en", limit },
           });
+
           const documents = data.search.documents.map(mapDocument);
           return connectionFromArray(documents, args);
         },

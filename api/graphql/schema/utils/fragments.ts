@@ -13,12 +13,27 @@ description
 directURL
 doi
 fileName
+imageURLS {
+  url
+  description
+  provider
+}
 isbn
 issn
+journalReference {
+  title
+  volume
+  issue
+  start
+  end
+}
 keywords
 language
 meshHeadings
 meshQualifiers
+pmcID
+publisher
+pubMedID
 rights
 source {
   id
@@ -26,10 +41,4 @@ source {
 title
 type_
 url
-
-# imageURLs: [Image!]!
-# pubMedID: PubMedID
-# pmcID: PMCID
-# journalReference: JournalReference
-# publisher: String
 `;
