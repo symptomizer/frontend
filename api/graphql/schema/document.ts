@@ -154,7 +154,7 @@ export const mapDocument = (document) => {
       break;
     }
     case "bnf": {
-      document.url = `${document.url}/${snakeCase(document.title)}.html`;
+      document.url = "https://bnf.nice.org.uk/drug/";
       break;
     }
     case "who_iris": {
