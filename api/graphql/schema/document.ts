@@ -144,9 +144,7 @@ export const mapDocument = (document) => {
       break;
     }
     case "nhs_covid19": {
-      document.url = document.directURL.split(
-        "https://www.nhs.uk/conditions/coronavirus-covid-19"
-      )[1];
+      document.url = document.directURL;
       break;
     }
     case "nhs_az": {
